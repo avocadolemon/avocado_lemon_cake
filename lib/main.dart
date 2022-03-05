@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
 import 'Screens/home_page.dart';
 import 'function/provider/theme_provider.dart';
 
@@ -17,13 +18,17 @@ class MyApp extends StatelessWidget {
       builder: (context, _) {
         final themeprovider = Provider.of<ThemeProvider>(context);
 
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Community chatapp',
-          themeMode: themeprovider.themeMode,
-          theme: MyThemes.lightTheme,
-          darkTheme: MyThemes.darkTheme,
-          home: const HomePage(),
+        return Sizer(
+          builder: (BuildContext context, Orientation orientation,
+                  DeviceType deviceType) =>
+              MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Community chatapp',
+            themeMode: themeprovider.themeMode,
+            theme: MyThemes.lightTheme,
+            darkTheme: MyThemes.darkTheme,
+            home: const HomePage(),
+          ),
         );
       },
     );
