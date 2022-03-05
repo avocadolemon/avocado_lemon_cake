@@ -13,18 +13,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context) => ThemeProvider(),
-        builder: (context, _) {
-          final themeprovider = Provider.of<ThemeProvider>(context);
+      create: (context) => ThemeProvider(),
+      builder: (context, _) {
+        final themeprovider = Provider.of<ThemeProvider>(context);
 
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Community chatapp',
-            themeMode: themeprovider.themeMode,
-            theme: MyThemes.lightTheme,
-            darkTheme: MyThemes.darkTheme,
-            home: const HomePage(),
-          );
-        });
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Community chatapp',
+          themeMode: themeprovider.themeMode,
+          theme: MyThemes.lightTheme,
+          darkTheme: MyThemes.darkTheme,
+          home: const HomePage(),
+        );
+      },
+    );
   }
 }
