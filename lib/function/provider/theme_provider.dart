@@ -14,13 +14,21 @@ class ThemeProvider extends ChangeNotifier {
 class MyThemes {
   static final darkTheme = ThemeData(
     fontFamily: 'OpenSans',
-    scaffoldBackgroundColor: Colors.grey.shade900,
+    scaffoldBackgroundColor: const Color(0xff141414),
     colorScheme: const ColorScheme.dark(),
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+      centerTitle: true,
+    ),
   );
 
   static final lightTheme = ThemeData(
     fontFamily: 'OpenSans',
     scaffoldBackgroundColor: Colors.white,
     colorScheme: const ColorScheme.light(),
+    appBarTheme: const AppBarTheme(
+      elevation: 0,
+      centerTitle: true,
+    ),
   );
 }

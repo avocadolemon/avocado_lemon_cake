@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'Screens/home_page.dart';
 import 'function/provider/theme_provider.dart';
+import 'routes/app_routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,14 +19,19 @@ class MyApp extends StatelessWidget {
       builder: (context, _) {
         final themeprovider = Provider.of<ThemeProvider>(context);
 
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Community chatapp',
-          themeMode: themeprovider.themeMode,
-          theme: MyThemes.lightTheme,
-          darkTheme: MyThemes.darkTheme,
-          home: const HomePage(),
-        );
+        return ScreenUtilInit(
+            designSize: const Size(375, 812),
+            builder: () {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                title: 'Community chatapp',
+                themeMode: themeprovider.themeMode,
+                theme: MyThemes.lightTheme,
+                darkTheme: MyThemes.darkTheme,
+                routes: AppRoutes().routes,
+                initialRoute: '/homepage',
+              );
+            });
       },
     );
   }
