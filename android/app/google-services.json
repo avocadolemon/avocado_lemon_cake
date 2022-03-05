@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "447068712269",
+    "project_id": "avocado-lemon-cake-2022",
+    "storage_bucket": "avocado-lemon-cake-2022.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447068712269:android:f1b3f1536a9a7e25e65b04",
+        "android_client_info": {
+          "package_name": "com.avocado.cakeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "447068712269-hu737u0tl54gvn0jt2t0laurnjn0hop4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.avocado.cakeapp",
+            "certificate_hash": "3ca1e9b493ea163dbfa898d3ed83d63fc5b8dabb"
+          }
+        },
+        {
+          "client_id": "447068712269-6m4o2ucmlnt7qo1vifqorqd86nn6bi8r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfBCjQMnc6A834o_Iuo1OOlJCVmx2JQ4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "447068712269-6m4o2ucmlnt7qo1vifqorqd86nn6bi8r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

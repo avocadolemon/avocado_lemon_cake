@@ -191,3 +191,5 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 }
+
+// keytool -list -v -alias androiddebugkey -keystore C:\Users\samue\.android\debug.keystore

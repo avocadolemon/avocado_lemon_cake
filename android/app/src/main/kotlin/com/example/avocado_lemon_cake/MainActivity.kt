@@ -1,4 +1,4 @@
-package com.example.avocado_lemon_cake
+package com.avocado.cakeapp
 
 import io.flutter.embedding.android.FlutterActivity
 
