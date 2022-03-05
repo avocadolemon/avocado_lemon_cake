@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../utils/colors.dart';
 
 class ButtonWidget extends StatelessWidget {
@@ -27,8 +28,10 @@ class ButtonWidget extends StatelessWidget {
                 color: AppColors.kprimary, strokeWidth: 2.8)
             : Text(
                 btnName,
-                style: const TextStyle(
-                    color: AppColors.kblack, fontWeight: FontWeight.w800),
+                style: TextStyle(
+                    fontSize: 22.sp,
+                    color: AppColors.kblack,
+                    fontWeight: FontWeight.w700),
               ),
         color: enabtn ? AppColors.kprimary : AppColors.kprimaryTrans,
         shape:

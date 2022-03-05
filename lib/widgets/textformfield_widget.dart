@@ -63,7 +63,7 @@ class TextFormFieldWidget extends StatelessWidget {
           maxLength: maxLength,
           obscureText: secure ?? false,
           obscuringCharacter: '●',
-          style: style ?? const TextStyle(color: Colors.black),
+          style: style ?? const TextStyle(color: Colors.white),
           onTap: onTap,
           decoration: InputDecoration(
             counterText: '',
