@@ -10,8 +10,19 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('main menu')),
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Center(child: Text('main menu')),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed('/login');
+            },
+            child: Text('Login'),
+          ),
+        ],
+      ),
     );
   }
 }
