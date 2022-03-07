@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../utils/colors.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/textformfield_widget.dart';
@@ -192,4 +191,3 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 }
 
-// keytool -list -v -alias androiddebugkey -keystore C:\Users\samue\.android\debug.keystore
