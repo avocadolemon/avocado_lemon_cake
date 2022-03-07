@@ -6,12 +6,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const CircleAvatar(
-            radius: 5, backgroundColor: Colors.grey, child: Icon(Icons.home)),
-        actions: [Row()],
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Center(child: Text('main menu')),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed('/login');
+            },
+            child: const Text('Login'),
+          ),
+        ],
       ),
     );
   }

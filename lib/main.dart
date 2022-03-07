@@ -3,7 +3,6 @@ import 'package:avocado_lemon_cake/auth/register.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:sizer/sizer.dart';
 import 'Screens/home_page.dart';
 import 'function/provider/theme_provider.dart';
 import 'routes/app_routes.dart';
@@ -31,7 +30,7 @@ class MyApp extends StatelessWidget {
             themeMode: themeprovider.themeMode,
             theme: MyThemes.lightTheme,
             darkTheme: MyThemes.darkTheme,
-            home: const RegisterScreen(),
+            home: const HomePage(),
           ),
         );
       },
