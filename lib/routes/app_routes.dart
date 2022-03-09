@@ -1,3 +1,4 @@
+import 'package:avocado_lemon_cake/screens/onboarding/index.dart';
 import 'package:flutter/material.dart';
 import '../auth/check_mail.dart';
 import '../auth/create_new_pass.dart';
@@ -6,6 +7,7 @@ import '../auth/login.dart';
 import '../auth/pass_reset_success.dart';
 import '../auth/register.dart';
 import '../screens/home_page.dart';
+import '../screens/splash/splash.dart';
 
 class AppRoutes {
   Map<String, Widget Function(BuildContext context)> routes =
@@ -17,5 +19,7 @@ class AppRoutes {
     '/check-mail': (context) => const CheckMail(),
     '/create-pass': (context) => const CreateNewPassword(),
     '/pass-success': (context) => const PasswordResetSuccess(),
+    '/splash': (context) => const SplashScreen(),
+    '/onboarding': (context) => OnBoardingScreen(),
   };
 }
