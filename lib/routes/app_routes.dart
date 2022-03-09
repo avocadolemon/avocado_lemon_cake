@@ -6,6 +6,8 @@ import '../auth/forgot_pass.dart';
 import '../auth/login.dart';
 import '../auth/pass_reset_success.dart';
 import '../auth/register.dart';
+import '../screens/add/add_city.dart';
+import '../screens/add/add_community.dart';
 import '../screens/home_page.dart';
 import '../screens/splash/splash.dart';
 
@@ -20,6 +22,8 @@ class AppRoutes {
     '/create-pass': (context) => const CreateNewPassword(),
     '/pass-success': (context) => const PasswordResetSuccess(),
     '/splash': (context) => const SplashScreen(),
-    '/onboarding': (context) => OnBoardingScreen(),
+    '/onboarding': (context) => const OnBoardingScreen(),
+    '/add-city': (context) => const AddCity(),
+    '/add-community': (context) => const AddCommunity(),
   };
 }

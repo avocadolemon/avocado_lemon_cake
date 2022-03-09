@@ -5,6 +5,7 @@ const String SVG_PATH = "assets/svgs";
 class ImageAssets{
   static const String splashLogo = "$IMAGE_PATH/alc_logo_white.png";
   static const String splashBG = "$IMAGE_PATH/splash.png";
+  static const String city = "$IMAGE_PATH/views.png";
 }
 
 class SvgAssets{

@@ -123,7 +123,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           borderRadius: BorderRadius.circular(10)),
                       child: FlatButton(
                         onPressed: () {
-                          Navigator.pushNamed(context, '/homepage');
+                          Navigator.pushNamed(context, '/add-city');
                         },
                         child: Text(
                           "Get Started",
