@@ -16,6 +16,13 @@ class HomePage extends StatelessWidget {
             },
             child: const Text('Login'),
           ),
+          const SizedBox(height: 10),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed('/community-screen');
+            },
+            child: const Text('View Community'),
+          ),
         ],
       ),
     );
