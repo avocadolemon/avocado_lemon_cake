@@ -5,6 +5,7 @@ import '../auth/forgot_pass.dart';
 import '../auth/login.dart';
 import '../auth/pass_reset_success.dart';
 import '../auth/register.dart';
+import '../screens/community/community_screen.dart';
 import '../screens/home_page.dart';
 
 class AppRoutes {
@@ -17,5 +18,6 @@ class AppRoutes {
     '/check-mail': (context) => const CheckMail(),
     '/create-pass': (context) => const CreateNewPassword(),
     '/pass-success': (context) => const PasswordResetSuccess(),
+    '/community-screen': (context) => const CommunityScreen(),
   };
 }
