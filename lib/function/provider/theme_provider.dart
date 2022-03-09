@@ -17,9 +17,7 @@ class MyThemes {
     scaffoldBackgroundColor: const Color(0xff141414),
     colorScheme: const ColorScheme.dark(),
     appBarTheme: const AppBarTheme(
-      elevation: 0,
-      centerTitle: true,
-    ),
+        elevation: 0, centerTitle: true, backgroundColor: Colors.transparent),
   );
 
   static final lightTheme = ThemeData(

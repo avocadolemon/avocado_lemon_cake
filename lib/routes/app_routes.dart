@@ -1,3 +1,4 @@
+import 'package:avocado_lemon_cake/auth/splash.dart';
 import 'package:flutter/material.dart';
 import '../auth/forgot_pass.dart';
 import '../auth/login.dart';
@@ -11,5 +12,6 @@ class AppRoutes {
     '/register': (context) => const RegisterScreen(),
     '/homepage': (context) => const HomePage(),
     '/forget-pass': (context) => const ForgetPassword(),
+    '/splash-screen': (context) => const SplashScreen(),
   };
 }
