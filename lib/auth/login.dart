@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Log-in'),
+        title: const Text('Log-ind sds'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -75,7 +75,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).pushNamed('/forget-pass');
+                      },
                       child: Text(
                         'Forgot Password?',
                         style: TextStyle(
@@ -190,4 +192,3 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 }
-

@@ -4,7 +4,10 @@ import 'package:provider/provider.dart';
 import 'function/provider/theme_provider.dart';
 import 'routes/app_routes.dart';
 
-void main() {
+Future<void> main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  // await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(false);
   runApp(const MyApp());
 }
 
@@ -27,7 +30,7 @@ class MyApp extends StatelessWidget {
               theme: MyThemes.lightTheme,
               darkTheme: MyThemes.darkTheme,
               routes: AppRoutes().routes,
-              initialRoute: '/splash-screen',
+              initialRoute: '/splash',
             );
           },
         );
