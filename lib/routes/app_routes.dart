@@ -1,4 +1,8 @@
-import 'package:avocado_lemon_cake/screens/onboarding/index.dart';
+import 'package:avocado_lemon_cake/auth/onboarding/index.dart';
+import 'package:avocado_lemon_cake/screens/group/group_conversation.dart';
+import 'package:avocado_lemon_cake/screens/home/add_group.dart';
+import 'package:avocado_lemon_cake/screens/home/groups_screen.dart';
+import 'package:avocado_lemon_cake/screens/home/home_tab.dart';
 import 'package:flutter/material.dart';
 import '../auth/check_mail.dart';
 import '../auth/create_new_pass.dart';
@@ -8,6 +12,7 @@ import '../auth/pass_reset_success.dart';
 import '../auth/register.dart';
 import '../screens/add/add_city.dart';
 import '../screens/add/add_community.dart';
+import '../screens/home/edit_group.dart';
 import '../screens/home_page.dart';
 import '../screens/splash/splash.dart';
 
@@ -25,5 +30,10 @@ class AppRoutes {
     '/onboarding': (context) => const OnBoardingScreen(),
     '/add-city': (context) => const AddCity(),
     '/add-community': (context) => const AddCommunity(),
+    '/home': (context) => const GroupScreen(),
+    '/homeWrapper': (context) => const HomeTab(),
+    '/addToGroup': (context) => const AddGroup(),
+    '/editNewGroup': (context) => const EditNewGroup(),
+    '/groupConversation': (context) => const GroupConversation(),
   };
 }

@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:async';
 import 'package:avocado_lemon_cake/utils/app_textstyle.dart';
-import 'package:avocado_lemon_cake/utils/assets_manager.dart.dart';
+import 'package:avocado_lemon_cake/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utils/colors.dart';
@@ -121,7 +121,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       decoration: BoxDecoration(
                           color: AppColors.kprimary,
                           borderRadius: BorderRadius.circular(10)),
-                      child: FlatButton(
+                      child: TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/add-city');
                         },
@@ -138,7 +138,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       decoration: BoxDecoration(
                           color: AppColors.kprimary,
                           borderRadius: BorderRadius.circular(10)),
-                      child: FlatButton(
+                      child: TextButton(
                         child: Text(
                           "Next",
                           style: heading1(context),
@@ -155,9 +155,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               duration: Duration(milliseconds: 100),
                               curve: Curves.bounceIn);
                         },
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(25),
-                        ),
                       ),
                     ),
             ),

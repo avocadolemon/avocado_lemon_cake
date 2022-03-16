@@ -145,7 +145,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   enabtn: enabtn,
                   startLoad: _loadBtn,
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.pushNamed(context, "/homeWrapper");
+                      
+                    }
                   },
                 ),
                 SizedBox(height: 50.h),

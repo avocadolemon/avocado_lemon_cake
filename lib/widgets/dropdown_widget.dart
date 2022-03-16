@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -5,14 +7,14 @@ class DropDownWidget extends StatefulWidget {
   final String text, hintText;
   final dynamic value;
   final void Function(dynamic) onChanged;
-  final List<DropdownMenuItem<dynamic>> items;
+  final List<DropdownMenuItem<dynamic>>? items;
   const DropDownWidget(
       {Key? key,
       required this.text,
       required this.hintText,
       required this.value,
       required this.onChanged,
-      required this.items})
+       this.items})
       : super(key: key);
 
   @override
@@ -47,7 +49,7 @@ class _DropDownWidgetState extends State<DropDownWidget> {
               borderSide: const BorderSide(width: 0.4),
             ),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(width: 0.4),
             ),
           ),

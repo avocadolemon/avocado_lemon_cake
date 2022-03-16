@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 import '../../utils/app_textstyle.dart';
 import '../../utils/colors.dart';
-import '../../utils/tab.dart';
 import 'components/community_block.dart';
 
 class AddCommunity extends StatefulWidget {
@@ -34,7 +33,7 @@ class _AddCommunityState extends State<AddCommunity>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAPpBar(context),
-      body: Container(
+      body: SizedBox(
         height: double.infinity,
         width: double.infinity,
         child: Column(
@@ -58,9 +57,8 @@ class _AddCommunityState extends State<AddCommunity>
                       padding:
                           EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                       decoration: BoxDecoration(
-                        color: all == true
-                            ? AppColors.kprimary
-                            : AppColors.ksgrey,
+                        color:
+                            all == true ? AppColors.kprimary : AppColors.ksgrey,
                         borderRadius: BorderRadius.circular(kPad),
                       ),
                       child: Center(
@@ -156,9 +154,7 @@ class _AddCommunityState extends State<AddCommunity>
                     shrinkWrap: true,
                     itemBuilder: (_, index) {
                       return InkWell(
-                          onTap: () {
-                            print(index);
-                          },
+                          onTap: () {},
                           child: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: kPad),
@@ -168,6 +164,24 @@ class _AddCommunityState extends State<AddCommunity>
                                 subCity: communityList[index].citySubName),
                           ));
                     })),
+            kLargeVerticalSpacing,
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 20),
+              width: double.infinity,
+              // height: 50,
+              decoration: BoxDecoration(
+                  color: AppColors.kprimary,
+                  borderRadius: BorderRadius.circular(10)),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/register');
+                },
+                child: Text(
+                  "Dummy Next",
+                  style: heading1(context),
+                ),
+              ),
+            )
           ],
         ),
       ),

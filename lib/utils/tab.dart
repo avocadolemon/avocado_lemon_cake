@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:avocado_lemon_cake/utils/app_spacing.dart';
 import 'package:avocado_lemon_cake/utils/colors.dart';
 import 'package:flutter/material.dart';
