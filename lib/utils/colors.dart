@@ -16,4 +16,6 @@ class AppColors {
   static const Color kbgc = Color(0xFFF1F1F1);
   static const Color kwidget = Color(0xFF1E141A);
   static const Color ksgrey = Color(0xFF757374);
+  static const Color kLime = Color.fromRGBO(175, 180, 43, 1);
+
 }

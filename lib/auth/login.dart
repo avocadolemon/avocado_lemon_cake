@@ -96,7 +96,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   enabtn: enabtn,
                   startLoad: _loadBtn,
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {}
+                    if (_formKey.currentState!.validate()) {
+                      Navigator.pushNamed(context, "/homeWrapper");
+                    }
                   },
                 ),
                 SizedBox(height: 32.h),

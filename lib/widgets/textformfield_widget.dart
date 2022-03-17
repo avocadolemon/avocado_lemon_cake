@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,7 +47,7 @@ class TextFormFieldWidget extends StatelessWidget {
             '$text',
             style: TextStyle(
               fontWeight: FontWeight.w400,
-              fontSize: 16.0.sp,
+              fontSize: 14.0.sp,
             ),
           ),
         ),
@@ -79,15 +81,15 @@ class TextFormFieldWidget extends StatelessWidget {
             filled: true,
             fillColor: Color(0xFFFFFFFF).withOpacity(0.4),
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(width: 0.4),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(width: 0.4),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(10),
               borderSide: const BorderSide(width: 0.4),
             ),
           ),

@@ -3,7 +3,6 @@
 import 'package:avocado_lemon_cake/screens/add/components/city_block.dart';
 import 'package:avocado_lemon_cake/utils/app_spacing.dart';
 import 'package:avocado_lemon_cake/utils/app_textstyle.dart';
-import 'package:avocado_lemon_cake/utils/assets_manager.dart.dart';
 import 'package:avocado_lemon_cake/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +16,7 @@ class AddCity extends StatefulWidget {
 }
 
 class _AddCityState extends State<AddCity> {
+  late int _selected = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,9 +47,12 @@ class _AddCityState extends State<AddCity> {
               itemBuilder: (_, index){
               return InkWell(
                 onTap: (){
-                  print(index);
+                  setState(() {
+                    _selected = index;
+                  });
+                  
                 },
-                child: CityBlock(image: cityList[index].image, city: cityList[index].cityName, subCity: cityList[index].citySubName));
+                child: CityBlock(image: cityList[index].image, city: cityList[index].cityName, subCity: cityList[index].citySubName, selectedCity: _selected, index: index,));
             })),
             kLargeVerticalSpacing,
             Container(
@@ -59,7 +62,7 @@ class _AddCityState extends State<AddCity> {
                       decoration: BoxDecoration(
                           color: AppColors.kprimary,
                           borderRadius: BorderRadius.circular(10)),
-                      child: FlatButton(
+                      child: TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/add-community');
                         },
