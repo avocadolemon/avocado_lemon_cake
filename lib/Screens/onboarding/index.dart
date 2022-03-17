@@ -73,16 +73,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextButton(
-                  onPressed: (){},
+                  onPressed: () {},
                   child: Text(
                     "Skip",
-                    style:
-                        bodyNormalText(context).copyWith(color: AppColors.kwhite, fontSize: 14.sp),
+                    style: bodyNormalText(context)
+                        .copyWith(color: AppColors.kwhite, fontSize: 14.sp),
                   ),
                 ),
               ),
             ),
-            
             Expanded(
               child: PageView.builder(
                   physics: ClampingScrollPhysics(),
@@ -108,7 +107,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 32.h,),
+            SizedBox(
+              height: 32.h,
+            ),
             Container(
               height: 50,
               margin: EdgeInsets.symmetric(vertical: 40),
@@ -164,7 +165,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ],
         ),
       ),
-      // backgroundColor: Colors.white,
+      // backgroundColor:5 Colors.white,
     );
   }
 

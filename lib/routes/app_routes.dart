@@ -8,6 +8,7 @@ import '../auth/pass_reset_success.dart';
 import '../auth/register.dart';
 import '../screens/add/add_city.dart';
 import '../screens/add/add_community.dart';
+import '../screens/community/community_screen.dart';
 import '../screens/home_page.dart';
 import '../screens/splash/splash.dart';
 
@@ -24,6 +25,7 @@ class AppRoutes {
     '/splash': (context) => const SplashScreen(),
     '/onboarding': (context) => const OnBoardingScreen(),
     '/add-city': (context) => const AddCity(),
+    '/community-screen': (context) => const CommunityScreen(),
     '/add-community': (context) => const AddCommunity(),
   };
 }
