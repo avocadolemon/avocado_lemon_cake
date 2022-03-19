@@ -22,7 +22,7 @@ class _CommunityBlockState extends State<CommunityBlock> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: kPad),
+      padding: const EdgeInsets.symmetric(vertical: 15),
       child: InkWell(
         onTap: (){
           setState(() {
@@ -32,7 +32,7 @@ class _CommunityBlockState extends State<CommunityBlock> {
         child: Stack(
           children: [
             Container(
-              height: 100,
+              height: 130,
               width: double.infinity,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),

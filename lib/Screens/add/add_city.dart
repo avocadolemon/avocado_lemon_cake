@@ -36,7 +36,7 @@ class _AddCityState extends State<AddCity> {
               ),
               child: ListTile(
                 leading: Icon(Icons.search,),
-                title: Text("Search for your city", style: bodyTinyText(context).copyWith(color: AppColors.kwhite),),
+                title: Text("Search for your city", style: bodyNormalText(context).copyWith(color: AppColors.kwhite),),
               ),
             ),
             kSmallVerticalSpacing,
@@ -50,28 +50,11 @@ class _AddCityState extends State<AddCity> {
                   setState(() {
                     _selected = index;
                   });
+                  Navigator.pushNamed(context, '/add-community');
                   
                 },
                 child: CityBlock(image: cityList[index].image, city: cityList[index].cityName, subCity: cityList[index].citySubName, selectedCity: _selected, index: index,));
-            })),
-            kLargeVerticalSpacing,
-            Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20),
-                      width: double.infinity,
-                      // height: 50,
-                      decoration: BoxDecoration(
-                          color: AppColors.kprimary,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/add-community');
-                        },
-                        child: Text(
-                          "Dummy Next",
-                          style: heading1(context),
-                        ),
-                      ),
-                    )
+            })),        
           ],
         ),
       ),

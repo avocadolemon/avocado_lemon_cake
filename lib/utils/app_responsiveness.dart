@@ -7,7 +7,7 @@ double responsive6(BuildContext context) =>
     MediaQuery.of(context).size.width / 36;
 
 double responsive8(BuildContext context) =>
-    MediaQuery.of(context).size.width / 34;
+    MediaQuery.of(context).size.width / 34; 
 
 double responsive10(BuildContext context) =>
     MediaQuery.of(context).size.width / 32;

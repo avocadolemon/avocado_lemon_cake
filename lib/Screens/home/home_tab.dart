@@ -101,7 +101,7 @@ class _HomeTabState extends State<HomeTab> {
                           ),
                           Text(
                             "musi".toUpperCase(),
-                            style: bodySmallText(context)
+                            style: bodyNormalText(context)
                                 .copyWith(color: AppColors.kwhite),
                           )
                         ],
@@ -125,8 +125,8 @@ class _HomeTabState extends State<HomeTab> {
                           kTinyHorizontalSpacing,
                           Text(
                             "Travel with Kids",
-                            style: bodySmallText(context)
-                                .copyWith(color: AppColors.kwhite),
+                            style: bodyNormalText(context)
+                                .copyWith(color: AppColors.kwhite,fontWeight: FontWeight.bold),
                           )
                         ],
                       ),
