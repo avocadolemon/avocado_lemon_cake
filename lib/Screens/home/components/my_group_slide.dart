@@ -22,7 +22,7 @@ class MyGroupSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 250,
-      margin: EdgeInsets.only(right: 20),
+      // margin: EdgeInsets.only(right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -30,7 +30,7 @@ class MyGroupSlide extends StatelessWidget {
             children: [
               Container(
                 height: 180,
-                width: size.width*0.75,
+                width: size.width*0.9,
                 decoration: BoxDecoration(
                   image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
                   borderRadius: BorderRadius.circular(5)
@@ -45,7 +45,9 @@ class MyGroupSlide extends StatelessWidget {
                   kTinyHorizontalSpacing,
                   Text("|", style: bodyNormalText(context).copyWith(color: AppColors.kwhite, fontSize: 6),),
                   kTinyHorizontalSpacing,
-                  Icon(Icons.notifications_outlined, size: 12, color: AppColors.kprimary,),
+                  Text("7", style: bodySmallText(context).copyWith(color: AppColors.kwhite),),
+                  kTinyHorizontalSpacing,
+                  Icon(Icons.people_rounded, size: 12, color: AppColors.kprimary,),
                 ],
               )),
                Positioned(

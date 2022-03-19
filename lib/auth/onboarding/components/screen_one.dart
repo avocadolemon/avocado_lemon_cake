@@ -50,8 +50,8 @@ class _OnboardingContentState extends State<OnboardingContent> {
                 padding: EdgeInsets.symmetric(horizontal: 50),
                 child: Text(widget.paragraph,
                     textAlign: TextAlign.center,
-                    style: bodySmallText(context)
-                        .copyWith(color: AppColors.kwhite))),
+                    style: bodyNormalText(context)
+                        .copyWith(color: AppColors.kwhite.withOpacity(0.7)))),
                         Spacer(
                           flex: 2,
                         ),

@@ -238,8 +238,8 @@ class _GroupScreenState extends State<GroupScreen> {
   Container buildSlider(Size size) {
     return Container(
       height: 250,
-      child: ListView.builder(
-          shrinkWrap: true,
+      child: PageView.builder(
+          // shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemCount: groupList.length,
           itemBuilder: (_, index) {

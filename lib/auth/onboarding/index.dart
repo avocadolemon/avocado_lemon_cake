@@ -22,7 +22,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         image: SvgAssets.onboardImgOne),
     OnboardingContent(
         heading: "Create a Community",
-        paragraph: "Expand your social circle by joinign a new community group",
+        paragraph: "Expand your social circle by joining a new community group",
         image: SvgAssets.onboardImgTwo),
     OnboardingContent(
         heading: "Come Join in the fun",
@@ -75,9 +75,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 child: TextButton(
                   onPressed: () {},
                   child: Text(
-                    "Skip",
-                    style: bodyNormalText(context)
-                        .copyWith(color: AppColors.kwhite, fontSize: 14.sp),
+                    currentIndex == slides.length - 1 ? "" : "Skip",
+                    style:
+                        bodyNormalText(context).copyWith(color: AppColors.kwhite, fontSize: 14.sp),
                   ),
                 ),
               ),

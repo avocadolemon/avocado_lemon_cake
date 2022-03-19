@@ -19,7 +19,7 @@ class _AddCommunityState extends State<AddCommunity>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-  bool all = false;
+  bool all = true;
   bool different = false;
   bool myCommunity = false;
   bool popular = false;
@@ -41,109 +41,112 @@ class _AddCommunityState extends State<AddCommunity>
           children: [
             Align(
               alignment: Alignment.center,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        all = true;
-                        different = false;
-                        myCommunity = false;
-                        popular = false;
-                      });
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                      decoration: BoxDecoration(
-                        color:
-                            all == true ? AppColors.kprimary : AppColors.ksgrey,
-                        borderRadius: BorderRadius.circular(kPad),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          all = true;
+                          different = false;
+                          myCommunity = false;
+                          popular = false;
+                        });
+                      },
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        decoration: BoxDecoration(
+                          color:
+                              all == true ? AppColors.kprimary : AppColors.ksgrey,
+                          borderRadius: BorderRadius.circular(kPad),
+                        ),
+                        child: Center(
+                            child: Text("All",
+                                style: bodySmallText(context).copyWith(
+                                    color: AppColors.kwhite))),
                       ),
-                      child: Center(
-                          child: Text("All",
-                              style: bodySmallText(context).copyWith(
-                                  color: AppColors.kwhite, fontSize: 8))),
                     ),
-                  ),
-                  const SizedBox(width: 20),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        all = false;
-                        different = true;
-                        myCommunity = false;
-                        popular = false;
-                      });
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: different == true
-                            ? AppColors.kprimary
-                            : AppColors.ksgrey,
-                        borderRadius: BorderRadius.circular(kPad),
+                    const SizedBox(width: 5),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          all = false;
+                          different = true;
+                          myCommunity = false;
+                          popular = false;
+                        });
+                      },
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: different == true
+                              ? AppColors.kprimary
+                              : AppColors.ksgrey,
+                          borderRadius: BorderRadius.circular(kPad),
+                        ),
+                        child: Center(
+                            child: Text("Different",
+                                 style: bodySmallText(context).copyWith(
+                                    color: AppColors.kwhite))),
                       ),
-                      child: Center(
-                          child: Text("Different",
-                              style: bodySmallText(context).copyWith(
-                                  color: AppColors.kwhite, fontSize: 8))),
                     ),
-                  ),
-                  const SizedBox(width: 20),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        all = false;
-                        different = false;
-                        myCommunity = true;
-                        popular = false;
-                      });
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: myCommunity == true
-                            ? AppColors.kprimary
-                            : AppColors.ksgrey,
-                        borderRadius: BorderRadius.circular(kPad),
+                    const SizedBox(width: 5),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          all = false;
+                          different = false;
+                          myCommunity = true;
+                          popular = false;
+                        });
+                      },
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: myCommunity == true
+                              ? AppColors.kprimary
+                              : AppColors.ksgrey,
+                          borderRadius: BorderRadius.circular(kPad),
+                        ),
+                        child: Center(
+                            child: Text("My Communities",
+                                style:  bodySmallText(context).copyWith(
+                                    color: AppColors.kwhite))),
                       ),
-                      child: Center(
-                          child: Text("My Communities",
-                              style: bodySmallText(context).copyWith(
-                                  color: AppColors.kwhite, fontSize: 8))),
                     ),
-                  ),
-                  const SizedBox(width: 20),
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        all = false;
-                        different = false;
-                        myCommunity = false;
-                        popular = true;
-                      });
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: popular == true
-                            ? AppColors.kprimary
-                            : AppColors.ksgrey,
-                        borderRadius: BorderRadius.circular(kPad),
+                    const SizedBox(width: 5),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          all = false;
+                          different = false;
+                          myCommunity = false;
+                          popular = true;
+                        });
+                      },
+                      child: Container(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: popular == true
+                              ? AppColors.kprimary
+                              : AppColors.ksgrey,
+                          borderRadius: BorderRadius.circular(kPad),
+                        ),
+                        child: Center(
+                            child: Text("Popular",
+                                 style: bodySmallText(context).copyWith(
+                                    color: AppColors.kwhite))),
                       ),
-                      child: Center(
-                          child: Text("Popular",
-                              style: bodySmallText(context).copyWith(
-                                  color: AppColors.kwhite, fontSize: 8))),
                     ),
-                  ),
-                  const SizedBox(width: 20),
-                ],
+                    const SizedBox(width: 5),
+                  ],
+                ),
               ),
             ),
             kSmallVerticalSpacing,
@@ -164,24 +167,6 @@ class _AddCommunityState extends State<AddCommunity>
                                 subCity: communityList[index].citySubName),
                           ));
                     })),
-            kLargeVerticalSpacing,
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
-              width: double.infinity,
-              // height: 50,
-              decoration: BoxDecoration(
-                  color: AppColors.kprimary,
-                  borderRadius: BorderRadius.circular(10)),
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/register');
-                },
-                child: Text(
-                  "Dummy Next",
-                  style: heading1(context),
-                ),
-              ),
-            )
           ],
         ),
       ),
@@ -196,19 +181,24 @@ class _AddCommunityState extends State<AddCommunity>
       actions: [
         Padding(
           padding: EdgeInsets.only(right: 20),
-          child: Container(
-              padding: EdgeInsets.all(6),
-              decoration: BoxDecoration(
-                color: AppColors.ksgrey,
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                Icons.location_city,
-                color: AppColors.kwhite,
-                size: 14,
-              )
-              // child: ,
-              ),
+          child: InkWell(
+            onTap: (){
+              Navigator.pushNamed(context, '/register');
+            },
+            child: Container(
+                padding: EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  color: AppColors.ksgrey,
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.location_city,
+                  color: AppColors.kwhite,
+                  size: 14,
+                )
+                // child: ,
+                ),
+          ),
         )
       ],
     );
