@@ -1,3 +1,4 @@
+import 'package:avocado_lemon_cake/Screens/group/about_group/about_group.dart';
 import 'package:avocado_lemon_cake/Screens/home/edit_group.dart';
 import 'package:avocado_lemon_cake/auth/onboarding/index.dart';
 import 'package:avocado_lemon_cake/screens/group/group_conversation.dart';
@@ -37,5 +38,6 @@ class AppRoutes {
     '/addToGroup': (context) => const AddGroup(),
     '/editNewGroup': (context) => const EditNewGroup(),
     '/groupConversation': (context) => const GroupConversation(),
+    '/aboutGroup': (context) => const AboutGroup(),
   };
 }
