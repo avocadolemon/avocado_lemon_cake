@@ -1,3 +1,4 @@
+import 'package:avocado_lemon_cake/Screens/home/edit_group.dart';
 import 'package:avocado_lemon_cake/auth/onboarding/index.dart';
 import 'package:avocado_lemon_cake/screens/group/group_conversation.dart';
 import 'package:avocado_lemon_cake/screens/home/add_group.dart';
@@ -12,7 +13,7 @@ import '../auth/pass_reset_success.dart';
 import '../auth/register.dart';
 import '../screens/add/add_city.dart';
 import '../screens/add/add_community.dart';
-import '../screens/home/edit_group.dart';
+import '../screens/community/community_screen.dart';
 import '../screens/home_page.dart';
 import '../screens/splash/splash.dart';
 
@@ -29,6 +30,7 @@ class AppRoutes {
     '/splash': (context) => const SplashScreen(),
     '/onboarding': (context) => const OnBoardingScreen(),
     '/add-city': (context) => const AddCity(),
+    '/community-screen': (context) => const CommunityScreen(),
     '/add-community': (context) => const AddCommunity(),
     '/home': (context) => const GroupScreen(),
     '/homeWrapper': (context) => const HomeTab(),
