@@ -16,6 +16,9 @@ import '../screens/add/add_city.dart';
 import '../screens/add/add_community.dart';
 import '../screens/community/community_screen.dart';
 import '../screens/home_page.dart';
+import '../screens/profile-management/add_image_screen.dart';
+import '../screens/profile-management/community_survery.dart';
+import '../screens/profile-management/edit_personal_data.dart';
 import '../screens/splash/splash.dart';
 
 class AppRoutes {
@@ -39,5 +42,8 @@ class AppRoutes {
     '/editNewGroup': (context) => const EditNewGroup(),
     '/groupConversation': (context) => const GroupConversation(),
     '/aboutGroup': (context) => const AboutGroup(),
+    '/editPersonalData': (context) => const EditPersonalData(),
+    '/communitySurvey': (context) => const CommunitySurvey(),
+    '/addImageScreen': (context) => const AddImageScreen(),
   };
 }

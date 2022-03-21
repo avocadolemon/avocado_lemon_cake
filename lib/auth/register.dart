@@ -26,9 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Register'),
-      ),
+      appBar: AppBar(title: const Text('Register')),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -147,7 +145,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       Navigator.pushNamed(context, "/homeWrapper");
-                      
                     }
                   },
                 ),

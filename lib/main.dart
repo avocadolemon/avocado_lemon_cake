@@ -22,6 +22,9 @@ class MyApp extends StatelessWidget {
         final themeprovider = Provider.of<ThemeProvider>(context);
 
         return ScreenUtilInit(
+          designSize: Size(360, 690),
+          minTextAdapt: true,
+          splitScreenMode: true,
           builder: () {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
@@ -30,7 +33,7 @@ class MyApp extends StatelessWidget {
               theme: MyThemes.lightTheme,
               darkTheme: MyThemes.darkTheme,
               routes: AppRoutes().routes,
-              initialRoute: '/community-screen',
+              initialRoute: '/addImageScreen',
             );
           },
         );
