@@ -24,7 +24,7 @@ class _GroupDetailsState extends State<GroupDetails> {
               )),
         ),
         SizedBox(
-          height: 180.h,
+          height: 150.h,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(8.0),

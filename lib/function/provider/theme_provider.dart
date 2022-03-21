@@ -21,6 +21,7 @@ class MyThemes {
       centerTitle: true,
       color: Color.fromARGB(255, 0, 0, 0),
     ),
+    drawerTheme: DrawerThemeData()
   );
 
   static final lightTheme = ThemeData(
@@ -30,6 +31,7 @@ class MyThemes {
     appBarTheme: const AppBarTheme(
       elevation: 0,
       centerTitle: true,
+      color: Colors.white,
     ),
   );
 }

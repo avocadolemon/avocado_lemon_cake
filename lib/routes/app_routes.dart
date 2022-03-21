@@ -1,5 +1,6 @@
 import 'package:avocado_lemon_cake/Screens/group/about_group/about_group.dart';
 import 'package:avocado_lemon_cake/Screens/home/edit_group.dart';
+import 'package:avocado_lemon_cake/Screens/profile_management/profile_management.dart';
 import 'package:avocado_lemon_cake/auth/onboarding/index.dart';
 import 'package:avocado_lemon_cake/screens/group/group_conversation.dart';
 import 'package:avocado_lemon_cake/screens/home/add_group.dart';
@@ -39,5 +40,6 @@ class AppRoutes {
     '/editNewGroup': (context) => const EditNewGroup(),
     '/groupConversation': (context) => const GroupConversation(),
     '/aboutGroup': (context) => const AboutGroup(),
+    '/profileManagement': (context) => const ProfileManagement(),
   };
 }

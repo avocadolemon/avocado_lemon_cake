@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:avocado_lemon_cake/Screens/group/about_group/components/group_details.dart';
 import 'package:avocado_lemon_cake/Screens/group/about_group/components/more_button.dart';
 import 'package:avocado_lemon_cake/Screens/group/about_group/components/profiles_avater.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -24,9 +25,7 @@ class _AboutGroupState extends State<AboutGroup> {
       appBar: AppBar(
         title: Text(
           groupID,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-          ),
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16.sp),
         ),
         leading: GestureDetector(
           onTap: () {},
@@ -67,7 +66,7 @@ class _AboutGroupState extends State<AboutGroup> {
             Padding(
               padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 5.h),
               child: Container(
-                height: 50.h,
+                height: 40.h,
                 decoration: BoxDecoration(
                     color: const Color(0xffFFCC00),
                     borderRadius: BorderRadius.circular(25.h)),
@@ -143,7 +142,8 @@ class DialogOptions extends StatelessWidget {
     Key? key,
     required this.title,
     this.titleColor,
-    this.backColor = Colors.black, this.onpress,
+    this.backColor = Colors.black,
+    this.onpress,
   }) : super(key: key);
 
   @override
