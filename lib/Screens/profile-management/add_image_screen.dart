@@ -1,3 +1,4 @@
+import 'package:avocado_lemon_cake/widgets/circle_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -429,19 +430,6 @@ Widget buildButton({String? txt, Color? color}) {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-    ),
-  );
-}
-
-Widget circleBar(bool isActive) {
-  return AnimatedContainer(
-    duration: const Duration(milliseconds: 150),
-    margin: const EdgeInsets.symmetric(horizontal: 2),
-    height: isActive ? 9 : 6,
-    width: isActive ? 9 : 6,
-    decoration: const BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.all(Radius.circular(12)),
     ),
   );
 }

@@ -33,7 +33,14 @@ class MyApp extends StatelessWidget {
               theme: MyThemes.lightTheme,
               darkTheme: MyThemes.darkTheme,
               routes: AppRoutes().routes,
-              initialRoute: '/splash',
+              builder: (context, widget) {
+                ScreenUtil.setContext(context);
+                return MediaQuery(
+                  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                  child: widget!,
+                );
+              },
+              initialRoute: '/community-screen',
             );
           },
         );
