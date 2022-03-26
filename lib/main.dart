@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               theme: MyThemes.lightTheme,
               darkTheme: MyThemes.darkTheme,
               routes: AppRoutes().routes,
-              initialRoute: '/addImageScreen',
+              initialRoute: '/splash',
             );
           },
         );

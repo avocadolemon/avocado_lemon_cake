@@ -27,47 +27,60 @@ class _HomeTabState extends State<HomeTab> {
             elevation: 0.0,
             bottom: PreferredSize(
               preferredSize: const Size.fromHeight(60),
-              child: TabBar(
-                indicatorColor: AppColors.kLime,
-                indicatorWeight: 2,
-                // BoxDecoration(
-                //     color: AppColors.kprimary,
-                //     borderRadius: BorderRadius.circular(kPad)),
-                tabs: [
-                  Tab(
-                      child: Text(
-                    "Groups(0)",
-                    style: bodyNormalText(context)
-                        .copyWith(color: AppColors.kwhite),
-                  )),
-                  Tab(
-                      child: Text(
-                    "Profile(5)",
-                    style: bodyNormalText(context)
-                        .copyWith(color: AppColors.kwhite),
-                  )),
-                  Tab(
-                      child: Stack(
-                    children: [
-                      Text(
-                        "Topics",
-                        style: bodyNormalText(context)
-                            .copyWith(color: AppColors.kwhite),
-                      ),
-                      Positioned(
-                          bottom: 0,
-                          right: -3,
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                    border: Border(
+                  bottom: BorderSide(color: AppColors.kwhite, width: 0.3),
+                )),
+                child: TabBar(
+                  indicatorColor: AppColors.kLime,
+                  indicatorWeight: 2,
+                  indicatorSize: TabBarIndicatorSize.label,
+                  tabs: [
+                    Tab(
+                        child: Text(
+                      "Groups(0)",
+                      style: bodyNormalText(context)
+                          .copyWith(color: AppColors.kwhite, fontSize: 16),
+                    )),
+                    Tab(
+                        child: Text(
+                      "Profile(5)",
+                      style: bodyNormalText(context)
+                          .copyWith(color: AppColors.kwhite, fontSize: 16),
+                    )),
+                    Tab(
+                        child: Stack(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.only(right: 5),
+                          child: Text(
+                            "Topics  ",
+                            style: bodyNormalText(context).copyWith(
+                                color: AppColors.kwhite, fontSize: 16),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 5,
+                          right: 0,
                           child: Container(
-                            padding: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(4),
                             decoration: const BoxDecoration(
                               shape: BoxShape.circle,
                               color: Colors.red,
                             ),
-                            child: Text("5", style: bodyTinyText(context).copyWith(color: AppColors.kwhite),),
-                          ))
-                    ],
-                  )),
-                ],
+                            child: Text(
+                              "5",
+                              style: bodyTinyText(context)
+                                  .copyWith(color: AppColors.kwhite),
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
+                  ],
+                ),
               ),
             ),
             leading: Padding(
@@ -125,8 +138,9 @@ class _HomeTabState extends State<HomeTab> {
                           kTinyHorizontalSpacing,
                           Text(
                             "Travel with Kids",
-                            style: bodyNormalText(context)
-                                .copyWith(color: AppColors.kwhite,fontWeight: FontWeight.bold),
+                            style: bodyNormalText(context).copyWith(
+                                color: AppColors.kwhite,
+                                fontWeight: FontWeight.bold),
                           )
                         ],
                       ),
@@ -137,6 +151,7 @@ class _HomeTabState extends State<HomeTab> {
             ],
           ),
           body: const TabBarView(
+            physics: NeverScrollableScrollPhysics(),
             children: [
               GroupScreen(),
               ProfileScreen(),

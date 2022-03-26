@@ -15,3 +15,12 @@ class AddGroupModel {
     required this.image,
   });
 }
+
+class MenuModel {
+  final String text;
+  bool isSelected;
+  MenuModel({
+    required this.text,
+    required this.isSelected,
+  });
+}

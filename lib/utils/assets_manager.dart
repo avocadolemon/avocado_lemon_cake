@@ -11,7 +11,7 @@ class ImageAssets{
 }
 
 class SvgAssets{
-  static const String onboardImgOne = "$SVG_PATH/onboarding1.svg";
-  static const String onboardImgTwo = "$SVG_PATH/onboarding2.svg";
-  static const String onboardImgThree = "$SVG_PATH/onboarding3.svg";
+  static const String onboardImgOne = "$SVG_PATH/onboard_1.svg";
+  static const String onboardImgTwo = "$SVG_PATH/onboard_2.svg";
+  static const String onboardImgThree = "$SVG_PATH/onboard_3.svg";
 }

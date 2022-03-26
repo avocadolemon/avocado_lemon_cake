@@ -22,18 +22,21 @@ class MyGroupSlide extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 250,
-      // margin: EdgeInsets.only(right: 20),
+      margin: EdgeInsets.only(right: kPad),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Stack(
             children: [
-              Container(
-                height: 180,
-                width: size.width*0.9,
-                decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
-                  borderRadius: BorderRadius.circular(5)
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0),
+                child: Container(
+                  height: 180,
+                  width: size.width*0.9,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+                    borderRadius: BorderRadius.circular(5)
+                  ),
                 ),
               ),
               Positioned(
@@ -41,17 +44,17 @@ class MyGroupSlide extends StatelessWidget {
                 left: 20,
                 child: Row(
                 children: [
-                  Icon(Icons.notifications_outlined, size: 12, color: AppColors.kprimary,),
+                  Icon(Icons.notifications_outlined, size: 14, color: AppColors.kprimary,),
                   kTinyHorizontalSpacing,
                   Text("|", style: bodyNormalText(context).copyWith(color: AppColors.kwhite, fontSize: 6),),
                   kTinyHorizontalSpacing,
                   Text("7", style: bodySmallText(context).copyWith(color: AppColors.kwhite),),
                   kTinyHorizontalSpacing,
-                  Icon(Icons.people_rounded, size: 12, color: AppColors.kprimary,),
+                  Icon(Icons.people_rounded, size: 14, color: AppColors.kprimary,),
                 ],
               )),
                Positioned(
-                  top: -6,
+                  top: -1,
                   right: 20,
                   child: Container(
                     padding: const EdgeInsets.all(5),
