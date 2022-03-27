@@ -18,6 +18,13 @@ List<MyGroup> groupList = [
   MyGroup(image: ImageAssets.city, name: "Group Name, Texas", count: "4"),
 ];
 
+List<MenuModel> menuItem = [
+  MenuModel(text: "Travel", isSelected: true),
+  MenuModel(text: "Travel", isSelected: false),
+  MenuModel(text: "Travel", isSelected: false),
+  MenuModel(text: "Travel", isSelected: false),
+];
+
 class GroupScreen extends StatefulWidget {
   const GroupScreen({Key? key}) : super(key: key);
 
@@ -26,10 +33,7 @@ class GroupScreen extends StatefulWidget {
 }
 
 class _GroupScreenState extends State<GroupScreen> {
-  bool firstTab = true;
-  bool secondTab = false;
-  bool thirdTab = false;
-  bool fourthTab = false;
+  int? _selectedItem;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -60,7 +64,7 @@ class _GroupScreenState extends State<GroupScreen> {
                     )
                   ],
                 ),
-                kMediumVerticalSpacing,
+                kSmallVerticalSpacing,
                 buildSlider(size),
                 kLargeVerticalSpacing,
                 Row(
@@ -77,7 +81,7 @@ class _GroupScreenState extends State<GroupScreen> {
                     )
                   ],
                 ),
-                kMediumVerticalSpacing,
+                kSmallVerticalSpacing,
                 buildSlider(size),
                 kLargeVerticalSpacing,
                 Row(
@@ -94,7 +98,7 @@ class _GroupScreenState extends State<GroupScreen> {
                     )
                   ],
                 ),
-                kMediumVerticalSpacing,
+                kSmallVerticalSpacing,
                 buildSlider(size),
               ],
             ),
@@ -106,140 +110,62 @@ class _GroupScreenState extends State<GroupScreen> {
 
   Padding _buildTabHeader(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: kPad),
-        child: Container(
-          padding: EdgeInsets.only(left: 10),
-          decoration: BoxDecoration(
-            color: AppColors.ksgrey.withOpacity(0.7),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
-            children: [
-              IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.search,
-                    size: 18,
-                    color: AppColors.kwhite,
-                  )),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          firstTab = true;
-                          secondTab = false;
-                          thirdTab = false;
-                          fourthTab = false;
-                        });
-                      },
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: firstTab == true
-                              ? AppColors.kLime
-                              : AppColors.ksgrey,
-                          borderRadius: BorderRadius.circular(kPad),
-                        ),
-                        child: Center(
-                            child: Text("Travel",
-                                style: bodySmallText(context).copyWith(
-                                    color: AppColors.kwhite, fontSize: 8))),
-                      ),
-                    ),
-                    kTinyHorizontalSpacing,
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          firstTab = false;
-                          secondTab = true;
-                          thirdTab = false;
-                          fourthTab = false;
-                        });
-                      },
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: secondTab == true
-                              ? AppColors.kLime
-                              : AppColors.ksgrey,
-                          borderRadius: BorderRadius.circular(kPad),
-                        ),
-                        child: Center(
-                            child: Text("Travel",
-                                style: bodySmallText(context).copyWith(
-                                    color: AppColors.kwhite, fontSize: 8))),
-                      ),
-                    ),
-                    kTinyHorizontalSpacing,
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          firstTab = false;
-                          secondTab = false;
-                          thirdTab = true;
-                          fourthTab = false;
-                        });
-                      },
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: thirdTab == true
-                              ? AppColors.kLime
-                              : AppColors.ksgrey,
-                          borderRadius: BorderRadius.circular(kPad),
-                        ),
-                        child: Center(
-                            child: Text("Travel",
-                                style: bodySmallText(context).copyWith(
-                                    color: AppColors.kwhite, fontSize: 8))),
-                      ),
-                    ),
-                    kTinyHorizontalSpacing,
-                    GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          firstTab = false;
-                          secondTab = false;
-                          thirdTab = false;
-                          fourthTab = true;
-                        });
-                      },
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                        decoration: BoxDecoration(
-                          color: fourthTab == true
-                              ? AppColors.kLime
-                              : AppColors.ksgrey,
-                          borderRadius: BorderRadius.circular(kPad),
-                        ),
-                        child: Center(
-                            child: Text("Travel",
-                                style: bodySmallText(context).copyWith(
-                                    color: AppColors.kwhite, fontSize: 8))),
-                      ),
-                    ),
-                    kTinyHorizontalSpacing,
-                  ],
-                ),
-              ),
-            ],
-          ),
+      padding: const EdgeInsets.symmetric(horizontal: kPad),
+      child: Container(
+        padding: EdgeInsets.only(left: 10),
+        decoration: BoxDecoration(
+          color: AppColors.ksgrey.withOpacity(0.7),
+          borderRadius: BorderRadius.circular(10),
         ),
-      );
+        child: Row(
+          children: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(
+                  Icons.search,
+                  size: 18,
+                  color: AppColors.kwhite,
+                )),
+            Expanded(
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.all(8),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  childAspectRatio: 2.5,
+                ),
+                itemCount: menuItem.length,
+                itemBuilder: (_, index) {
+                  return InkWell(
+                    onTap: () {
+                      setState(() {
+                        _selectedItem = index;
+                      });
+                    },
+                    child: MenuItem(
+                      index: index,
+                      selectedTab: _selectedItem ?? 0,
+                      title: menuItem[index].text,
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   Container buildSlider(Size size) {
     return Container(
       height: 250,
       child: PageView.builder(
-          // shrinkWrap: true,
+        controller: PageController(
+          viewportFraction: 0.85,
+        ),
+        padEnds: false,
           scrollDirection: Axis.horizontal,
           itemCount: groupList.length,
           itemBuilder: (_, index) {
@@ -250,6 +176,35 @@ class _GroupScreenState extends State<GroupScreen> {
               size: size,
             );
           }),
+    );
+  }
+}
+
+class MenuItem extends StatelessWidget {
+  const MenuItem({
+    Key? key,
+    required this.selectedTab,
+    required this.title,
+    required this.index,
+  }) : super(key: key);
+
+  final int selectedTab;
+  final String title;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      margin: EdgeInsets.only(right: 5),
+      decoration: BoxDecoration(
+        color: selectedTab == index ? AppColors.kLime : AppColors.ksgrey,
+        borderRadius: BorderRadius.circular(kPad),
+      ),
+      child: Center(
+          child: Text(title,
+              style: bodySmallText(context)
+                  .copyWith(color: AppColors.kwhite, fontSize: 11))),
     );
   }
 }

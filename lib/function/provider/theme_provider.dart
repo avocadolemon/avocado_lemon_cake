@@ -1,3 +1,4 @@
+import 'package:avocado_lemon_cake/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class ThemeProvider extends ChangeNotifier {
@@ -13,13 +14,17 @@ class ThemeProvider extends ChangeNotifier {
 
 class MyThemes {
   static final darkTheme = ThemeData(
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: AppColors.kwhite,
+      modalBackgroundColor: AppColors.kwhite,
+    ),
     fontFamily: 'OpenSans',
     scaffoldBackgroundColor: Colors.black,
     colorScheme: const ColorScheme.dark(),
     appBarTheme: const AppBarTheme(
       elevation: 0,
       centerTitle: true,
-      color: Color.fromARGB(255, 0, 0, 0),
+      color: Color.fromARGB(255, 19, 7, 7),
     ),
     drawerTheme: DrawerThemeData()
   );

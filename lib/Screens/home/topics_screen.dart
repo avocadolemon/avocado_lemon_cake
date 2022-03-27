@@ -4,6 +4,7 @@ import 'package:avocado_lemon_cake/utils/app_spacing.dart';
 import 'package:avocado_lemon_cake/utils/app_textstyle.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/model/model.dart';
 import '../../utils/colors.dart';
 
 class TopicScreen extends StatefulWidget {
@@ -13,7 +14,15 @@ class TopicScreen extends StatefulWidget {
   State<TopicScreen> createState() => _TopicScreenState();
 }
 
+List<MenuModel> _menuItem = [
+  MenuModel(text: "My 15", isSelected: true),
+  MenuModel(text: "Location", isSelected: false),
+  MenuModel(text: "Date", isSelected: false),
+  MenuModel(text: "View", isSelected: false),
+];
+
 class _TopicScreenState extends State<TopicScreen> {
+  int? _selectedItem;
   bool firstTab = true;
   bool secondTab = false;
   bool thirdTab = false;
@@ -146,118 +155,29 @@ class _TopicScreenState extends State<TopicScreen> {
                   color: AppColors.kwhite,
                 )),
             Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.all(8),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 4,
+                  childAspectRatio: 2.5,
+                ),
+                itemCount: _menuItem.length,
+                itemBuilder: (_, index) {
+                  return InkWell(
                     onTap: () {
                       setState(() {
-                        firstTab = true;
-                        secondTab = false;
-                        thirdTab = false;
-                        fourthTab = false;
+                        _selectedItem = index;
                       });
                     },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: firstTab == true
-                            ? AppColors.kLime
-                            : AppColors.ksgrey,
-                        borderRadius: BorderRadius.circular(kPad),
-                      ),
-                      child: Row(
-                        children: [
-                          Text("My 15 ",
-                              style: bodySmallText(context).copyWith(
-                                  color: AppColors.kwhite, fontSize: 8)),
-                          Icon(
-                            Icons.star,
-                            color: AppColors.kprimary,
-                            size: 10,
-                          )
-                        ],
-                      ),
+                    child: MenuItem(
+                      index: index,
+                      selectedTab: _selectedItem ?? 0,
+                      title: _menuItem[index].text,
                     ),
-                  ),
-                  kTinyHorizontalSpacing,
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        firstTab = false;
-                        secondTab = true;
-                        thirdTab = false;
-                        fourthTab = false;
-                      });
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: secondTab == true
-                            ? AppColors.kLime
-                            : AppColors.ksgrey,
-                        borderRadius: BorderRadius.circular(kPad),
-                      ),
-                      child: Center(
-                          child: Text("Location",
-                              style: bodySmallText(context).copyWith(
-                                  color: AppColors.kwhite, fontSize: 8))),
-                    ),
-                  ),
-                  kTinyHorizontalSpacing,
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        firstTab = false;
-                        secondTab = false;
-                        thirdTab = true;
-                        fourthTab = false;
-                      });
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: thirdTab == true
-                            ? AppColors.kLime
-                            : AppColors.ksgrey,
-                        borderRadius: BorderRadius.circular(kPad),
-                      ),
-                      child: Center(
-                          child: Text("Date",
-                              style: bodySmallText(context).copyWith(
-                                  color: AppColors.kwhite, fontSize: 8))),
-                    ),
-                  ),
-                  kTinyHorizontalSpacing,
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        firstTab = false;
-                        secondTab = false;
-                        thirdTab = false;
-                        fourthTab = true;
-                      });
-                    },
-                    child: Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                      decoration: BoxDecoration(
-                        color: fourthTab == true
-                            ? AppColors.kLime
-                            : AppColors.ksgrey,
-                        borderRadius: BorderRadius.circular(kPad),
-                      ),
-                      child: Center(
-                          child: Text("View",
-                              style: bodySmallText(context).copyWith(
-                                  color: AppColors.kwhite, fontSize: 8))),
-                    ),
-                  ),
-                  kTinyHorizontalSpacing,
-                ],
+                  );
+                },
               ),
             ),
           ],
@@ -266,3 +186,33 @@ class _TopicScreenState extends State<TopicScreen> {
     );
   }
 }
+
+class MenuItem extends StatelessWidget {
+  const MenuItem({
+    Key? key,
+    required this.selectedTab,
+    required this.title,
+    required this.index,
+  }) : super(key: key);
+
+  final int selectedTab;
+  final String title;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+      margin: EdgeInsets.only(right: 5),
+      decoration: BoxDecoration(
+        color: selectedTab == index ? AppColors.kLime : AppColors.ksgrey,
+        borderRadius: BorderRadius.circular(kPad),
+      ),
+      child: Center(
+          child: Text(title,
+              style: bodySmallText(context)
+                  .copyWith(color: AppColors.kwhite, fontSize: 11))),
+    );
+  }
+}
+
