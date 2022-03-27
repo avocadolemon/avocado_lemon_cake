@@ -18,11 +18,11 @@ class _AddImageScreenState extends State<AddImageScreen> {
     List<Widget> containers = [
       firstStage(),
       secondStage(),
-      thirdStage(),
+      // thirdStage(),
     ];
 
     return Scaffold(
-      body: Stack( 
+      body: Stack(
         children: [
           Container(
             height: size.height,
@@ -347,9 +347,8 @@ class _AddImageScreenState extends State<AddImageScreen> {
 
   Widget thirdStage() {
     Size size = MediaQuery.of(context).size;
-    return FittedBox(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+    return Dialog(
+      child: FittedBox(
         child: Container(
           height: 500.h,
           width: 311.w,
@@ -455,9 +454,15 @@ class _AddImageScreenState extends State<AddImageScreen> {
         3,
         (index) => GestureDetector(
             onTap: () {
-              setState(() {
-                _currentIndex = 2;
-              });
+              // setState(() {
+              //   _currentIndex = 2;
+              // });
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return thirdStage();
+                },
+              );
             },
             child: circleBar(index == 1 ? true : false)),
       ),

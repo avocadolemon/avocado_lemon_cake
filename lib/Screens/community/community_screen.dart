@@ -53,7 +53,8 @@ class _CommunityScreenState extends State<CommunityScreen> {
       if (mounted) {
         setState(() {
           if (_currentIndex + 1 == imgList.length) {
-            _currentIndex = 0;
+            _timer!.cancel();
+            Navigator.pushNamed(context, '/register');
           } else {
             _currentIndex = _currentIndex + 1;
           }

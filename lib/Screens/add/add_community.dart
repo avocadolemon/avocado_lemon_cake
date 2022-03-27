@@ -59,14 +59,15 @@ class _AddCommunityState extends State<AddCommunity>
                         padding:
                             EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                         decoration: BoxDecoration(
-                          color:
-                              all == true ? AppColors.kprimary : AppColors.ksgrey,
+                          color: all == true
+                              ? AppColors.kprimary
+                              : AppColors.ksgrey,
                           borderRadius: BorderRadius.circular(kPad),
                         ),
                         child: Center(
                             child: Text("All",
-                                style: bodySmallText(context).copyWith(
-                                    color: AppColors.kwhite))),
+                                style: bodySmallText(context)
+                                    .copyWith(color: AppColors.kwhite))),
                       ),
                     ),
                     const SizedBox(width: 5),
@@ -90,8 +91,8 @@ class _AddCommunityState extends State<AddCommunity>
                         ),
                         child: Center(
                             child: Text("Different",
-                                 style: bodySmallText(context).copyWith(
-                                    color: AppColors.kwhite))),
+                                style: bodySmallText(context)
+                                    .copyWith(color: AppColors.kwhite))),
                       ),
                     ),
                     const SizedBox(width: 5),
@@ -115,8 +116,8 @@ class _AddCommunityState extends State<AddCommunity>
                         ),
                         child: Center(
                             child: Text("My Communities",
-                                style:  bodySmallText(context).copyWith(
-                                    color: AppColors.kwhite))),
+                                style: bodySmallText(context)
+                                    .copyWith(color: AppColors.kwhite))),
                       ),
                     ),
                     const SizedBox(width: 5),
@@ -140,8 +141,8 @@ class _AddCommunityState extends State<AddCommunity>
                         ),
                         child: Center(
                             child: Text("Popular",
-                                 style: bodySmallText(context).copyWith(
-                                    color: AppColors.kwhite))),
+                                style: bodySmallText(context)
+                                    .copyWith(color: AppColors.kwhite))),
                       ),
                     ),
                     const SizedBox(width: 5),
@@ -182,8 +183,8 @@ class _AddCommunityState extends State<AddCommunity>
         Padding(
           padding: EdgeInsets.only(right: 20),
           child: InkWell(
-            onTap: (){
-              Navigator.pushNamed(context, '/register');
+            onTap: () {
+              Navigator.pushNamed(context, '/community-screen');
             },
             child: Container(
                 padding: EdgeInsets.all(6),
