@@ -1,5 +1,5 @@
+import 'dart:async';
 import 'package:avocado_lemon_cake/widgets/circle_bar_widget.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -12,6 +12,7 @@ class CommunityScreen extends StatefulWidget {
 
 class _CommunityScreenState extends State<CommunityScreen> {
   int _currentIndex = 0;
+  Timer? _timer;
   final List<String> imgList = [
     "assets/imgs/3.png",
     "assets/imgs/8.png",
@@ -46,6 +47,28 @@ class _CommunityScreenState extends State<CommunityScreen> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(seconds: 6), (timer) async {
+      if (mounted) {
+        setState(() {
+          if (_currentIndex + 1 == imgList.length) {
+            _currentIndex = 0;
+          } else {
+            _currentIndex = _currentIndex + 1;
+          }
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer!.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
@@ -54,25 +77,12 @@ class _CommunityScreenState extends State<CommunityScreen> {
       body: SafeArea(
         child: Stack(
           children: [
-            CarouselSlider(
-              items: imgList.map((item) => backgroudImage(item)).toList(),
-              options: CarouselOptions(
-                height: height,
-                viewportFraction: 1.0,
-                enlargeCenterPage: false,
-                initialPage: 0,
-                onPageChanged: (index, reason) {
-                  setState(() {
-                    _currentIndex = index;
-                  });
-                },
-                enableInfiniteScroll: true,
-                autoPlay: true,
-                autoPlayInterval: const Duration(seconds: 6),
-                autoPlayAnimationDuration: const Duration(milliseconds: 1000),
-                autoPlayCurve: Curves.slowMiddle,
-                scrollDirection: Axis.horizontal,
-              ),
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 500),
+              transitionBuilder: (Widget child, Animation<double> animation) {
+                return FadeTransition(child: child, opacity: animation);
+              },
+              child: backgroudImage(imgList[_currentIndex]),
             ),
             SafeArea(
               child: Container(
@@ -98,7 +108,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           SizedBox(
-                            // height: 75.h,
+                            height: 100.h,
                             width: width,
                             child: Padding(
                               padding:
@@ -136,7 +146,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(height: 140.h),
+                          SizedBox(height: 120.h),
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 10.0),
@@ -377,6 +387,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
 
   Widget backgroudImage(String img) {
     return ShaderMask(
+      key: ValueKey<int>(_currentIndex),
       shaderCallback: (bounds) => const LinearGradient(
         colors: [Colors.white, Colors.white],
         begin: Alignment.bottomCenter,
@@ -384,6 +395,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
       ).createShader(bounds),
       blendMode: BlendMode.darken,
       child: Container(
+        key: ValueKey<int>(_currentIndex),
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage(img),
