@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Timer? _timer;
 
   _startDelay() {
-    _timer = Timer(const Duration(seconds: 2), _goNext);
+    _timer = Timer(const Duration(seconds: 10), _goNext);
   }
 
   _goNext() {
@@ -42,14 +42,12 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Spacer(
-              flex: 2
-            ),
+            const Spacer(flex: 2),
             Container(
               height: 200,
               decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage(ImageAssets.splashBG))
-              ),
+                  image:
+                      DecorationImage(image: AssetImage(ImageAssets.splashBG))),
             ),
             const Spacer(
               flex: 1,
@@ -57,7 +55,11 @@ class _SplashScreenState extends State<SplashScreen> {
             Container(
               height: 80,
               decoration: const BoxDecoration(
-                image: DecorationImage(image: AssetImage(ImageAssets.splashLogo))
+                image: DecorationImage(
+                  image: AssetImage(
+                    ImageAssets.splashLogo,
+                  ),
+                ),
               ),
             ),
             const Spacer(

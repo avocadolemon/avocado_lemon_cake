@@ -1,12 +1,13 @@
 import 'dart:ffi';
 
 import 'package:avocado_lemon_cake/Screens/group/about_group/components/group_details.dart';
-import 'package:avocado_lemon_cake/Screens/group/about_group/components/more_button.dart';
+import 'package:avocado_lemon_cake/widgets/more_button.dart';
 import 'package:avocado_lemon_cake/Screens/group/about_group/components/profiles_avater.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../widgets/more_button.dart';
 import 'components/groupID_image_slider.dart';
 
 class AboutGroup extends StatefulWidget {
@@ -61,7 +62,9 @@ class _AboutGroupState extends State<AboutGroup> {
             ),
             const GroupDetails(),
             const ProfileList(),
-
+            SizedBox(
+              height: 10.h,
+            ),
             // buttom button
             Padding(
               padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 5.h),

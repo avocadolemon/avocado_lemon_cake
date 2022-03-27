@@ -1,4 +1,5 @@
 import 'package:avocado_lemon_cake/Screens/group/about_group/about_group.dart';
+import 'package:avocado_lemon_cake/Screens/group/about_group/components/profiles_avater.dart';
 import 'package:avocado_lemon_cake/Screens/home/edit_group.dart';
 import 'package:avocado_lemon_cake/Screens/profile_management/profile_management.dart';
 import 'package:avocado_lemon_cake/auth/onboarding/index.dart';
@@ -17,6 +18,9 @@ import '../screens/add/add_city.dart';
 import '../screens/add/add_community.dart';
 import '../screens/community/community_screen.dart';
 import '../screens/home_page.dart';
+import '../screens/profile-management/add_image_screen.dart';
+import '../screens/profile-management/community_survery.dart';
+import '../screens/profile-management/edit_personal_data.dart';
 import '../screens/splash/splash.dart';
 
 class AppRoutes {
@@ -40,6 +44,9 @@ class AppRoutes {
     '/editNewGroup': (context) => const EditNewGroup(),
     '/groupConversation': (context) => const GroupConversation(),
     '/aboutGroup': (context) => const AboutGroup(),
-    '/profileManagement': (context) => const ProfileManagement(),
+    '/editPersonalData': (context) => const EditPersonalData(),
+    '/communitySurvey': (context) => const CommunitySurvey(),
+    '/addImageScreen': (context) => const AddImageScreen(),
+    '/ProfileManagement': (context) => const ProfileManagement(),
   };
 }

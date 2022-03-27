@@ -26,7 +26,7 @@ class _ProfileManagementState extends State<ProfileManagement> {
                     Icons.home,
                     color: Colors.white,
                   ),
-                  backgroundColor: const Color(0xff9C9C9C),
+                  // backgroundColor: const Color(0xff9C9C9C),
                   radius: 16.h,
                 ),
                 SizedBox(
@@ -35,13 +35,13 @@ class _ProfileManagementState extends State<ProfileManagement> {
                 Container(
                   width: 200.w,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: const Color(0xff9C9C9C)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: Center(
                     child: Text(
                       'Profile Management',
-                      style:
-                          TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontSize: 14.sp, fontWeight: FontWeight.w600),
                     ),
                   ),
                 )
@@ -57,48 +57,6 @@ class _ProfileManagementState extends State<ProfileManagement> {
             SizedBox(
               height: 38.h,
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.location_on,
-                        color: Color(0xffffcc00),
-                      ),
-                      Text(
-                        'City Ibaque',
-                        style: TextStyle(fontSize: 13.sp),
-                      )
-                    ],
-                  ),
-                  Text(
-                    'Los Andes',
-                    style: TextStyle(fontSize: 13.sp),
-                  ),
-                  Column(
-                    children: [
-                      const Icon(
-                        Icons.email_outlined,
-                        color: Color(0xffffcc00),
-                      ),
-                      Text(
-                        'Friends / Systems',
-                        style: TextStyle(
-                            color: const Color(0xffffcc00), fontSize: 13.sp),
-                      )
-                    ],
-                  )
-                ],
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-
-            //  user profile role
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -147,6 +105,48 @@ class _ProfileManagementState extends State<ProfileManagement> {
                   ],
                 )
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.location_on,
+                        color: Color(0xffffcc00),
+                      ),
+                      Text(
+                        'City Ibaque',
+                        style: TextStyle(fontSize: 13.sp),
+                      )
+                    ],
+                  ),
+                  Text(
+                    'Los Andes',
+                    style: TextStyle(fontSize: 13.sp),
+                  ),
+                  Column(
+                    children: [
+                      const Icon(
+                        Icons.email_outlined,
+                        color: Color(0xffffcc00),
+                      ),
+                      Text(
+                        'Friends / Systems',
+                        style: TextStyle(
+                            color: const Color(0xffffcc00), fontSize: 13.sp),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+
+            //  user profile role
+            const SizedBox(
+              height: 20,
             ),
             SizedBox(
               height: 30.h,
