@@ -51,184 +51,188 @@ class _CommunityScreenState extends State<CommunityScreen> {
     final double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      body: Stack(
-        children: [
-          CarouselSlider(
-            items: imgList.map((item) => backgroudImage(item)).toList(),
-            options: CarouselOptions(
-              height: height,
-              viewportFraction: 1.0,
-              enlargeCenterPage: false,
-              initialPage: 0,
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-              enableInfiniteScroll: true,
-              autoPlay: true,
-              autoPlayInterval: const Duration(seconds: 6),
-              autoPlayAnimationDuration: const Duration(milliseconds: 1000),
-              autoPlayCurve: Curves.fastLinearToSlowEaseIn,
-              scrollDirection: Axis.horizontal,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            CarouselSlider(
+              items: imgList.map((item) => backgroudImage(item)).toList(),
+              options: CarouselOptions(
+                height: height,
+                viewportFraction: 1.0,
+                enlargeCenterPage: false,
+                initialPage: 0,
+                onPageChanged: (index, reason) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+                enableInfiniteScroll: true,
+                autoPlay: true,
+                autoPlayInterval: const Duration(seconds: 6),
+                autoPlayAnimationDuration: const Duration(milliseconds: 1000),
+                autoPlayCurve: Curves.slowMiddle,
+                scrollDirection: Axis.horizontal,
+              ),
             ),
-          ),
-          SafeArea(
-            child: Container(
-              width: width,
-              height: height,
-              decoration: const BoxDecoration(color: Color(0x99000000)),
-              child: FittedBox(
-                fit: BoxFit.fill,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        for (int i = 0; i < 3; i++)
-                          (i == 1 ? circleBar(true) : circleBar(false))
-                      ],
-                    ),
-                    SizedBox(height: 35.h),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        SizedBox(
-                          height: 75.h,
-                          width: width,
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                FittedBox(
-                                  child: Text(
-                                    title[_currentIndex],
+            SafeArea(
+              child: Container(
+                width: width,
+                height: height,
+                decoration: const BoxDecoration(color: Color(0x99000000)),
+                child: FittedBox(
+                  fit: BoxFit.fill,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 5.h),
+                      Row(
+                        children: [
+                          for (int i = 0; i < 3; i++)
+                            (i == 1 ? circleBar(true) : circleBar(false))
+                        ],
+                      ),
+                      SizedBox(height: 30.h),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            // height: 75.h,
+                            width: width,
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  FittedBox(
+                                    child: Text(
+                                      title[_currentIndex],
+                                      style: TextStyle(
+                                        color: const Color(0xffffffff),
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "OpenSans",
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 35.0.sp,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                  Text(
+                                    subtitle[_currentIndex],
                                     style: TextStyle(
                                       color: const Color(0xffffffff),
-                                      fontWeight: FontWeight.w700,
+                                      fontWeight: FontWeight.w300,
                                       fontFamily: "OpenSans",
                                       fontStyle: FontStyle.normal,
-                                      fontSize: 35.0.sp,
+                                      fontSize: 14.0.sp,
                                     ),
-                                    textAlign: TextAlign.center,
+                                    maxLines: 2,
+                                    textAlign: TextAlign.left,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 140.h),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Stack(
+                              children: [
+                                const CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  child: Icon(
+                                    Icons.person,
+                                    color: Colors.black,
+                                    size: 28,
                                   ),
                                 ),
-                                Text(
-                                  subtitle[_currentIndex],
-                                  style: TextStyle(
-                                    color: const Color(0xffffffff),
-                                    fontWeight: FontWeight.w300,
-                                    fontFamily: "OpenSans",
-                                    fontStyle: FontStyle.normal,
-                                    fontSize: 14.0.sp,
+                                Positioned.directional(
+                                  textDirection: TextDirection.rtl,
+                                  bottom: 24.h,
+                                  start: 1.w,
+                                  end: 32.w,
+                                  child: Container(
+                                    width: 17,
+                                    height: 17,
+                                    decoration: const BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color(0x290e1f35),
+                                          offset: Offset(0, 4),
+                                          blurRadius: 8,
+                                          spreadRadius: 0,
+                                        ),
+                                      ],
+                                      shape: BoxShape.circle,
+                                      color: Color(0xff31d641),
+                                    ),
                                   ),
-                                  maxLines: 2,
-                                  textAlign: TextAlign.left,
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                        SizedBox(height: 140.h),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Stack(
-                            children: [
-                              const CircleAvatar(
-                                backgroundColor: Colors.white,
-                                child: Icon(
-                                  Icons.person,
-                                  color: Colors.black,
-                                  size: 28,
-                                ),
-                              ),
-                              Positioned.directional(
-                                textDirection: TextDirection.rtl,
-                                bottom: 24.h,
-                                start: 1.w,
-                                end: 32.w,
-                                child: Container(
-                                  width: 17,
-                                  height: 17,
-                                  decoration: const BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Color(0x290e1f35),
-                                        offset: Offset(0, 4),
-                                        blurRadius: 8,
-                                        spreadRadius: 0,
-                                      ),
-                                    ],
-                                    shape: BoxShape.circle,
-                                    color: Color(0xff31d641),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 42.h),
-                    SizedBox(
-                      height: 230.h,
-                      width: width,
-                      child: Column(
-                        children: [
-                          getCommunity(
-                            txt1: 'The Surfer',
-                            txt2: 'The Photographers',
-                            color1: const Color(0xFFEB682A),
-                            color2: const Color(0xFFEA3948),
-                          ),
-                          SizedBox(height: 30.h),
-                          getCommunity(
-                            txt1: 'Second Hand & Vintage',
-                            txt2: 'Football',
-                            color1: const Color(0xFFD89F07),
-                            color2: const Color(0xFFBF6D84),
-                          ),
-                          SizedBox(height: 30.h),
-                          getCommunity(
-                            txt1: 'Yoga',
-                            txt2: 'Puppy',
-                            color1: const Color(0xFF62BAB6),
-                            color2: const Color(0xFFA9C80C),
-                          ),
                         ],
                       ),
-                    ),
-                    SizedBox(height: 100.h),
-                    Container(
-                      height: 120.h,
-                      width: width,
-                      color: Colors.transparent,
-                      child: SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
+                      SizedBox(height: 42.h),
+                      SizedBox(
+                        height: 230.h,
+                        width: width,
+                        child: Column(
                           children: [
-                            thirdRowWidget(),
-                            SizedBox(width: 26.w),
-                            thirdRowWidget(),
-                            SizedBox(width: 26.w),
-                            thirdRowWidget(),
-                            SizedBox(width: 26.w),
+                            getCommunity(
+                              txt1: 'The Surfer',
+                              txt2: 'The Photographers',
+                              color1: const Color(0xFFEB682A),
+                              color2: const Color(0xFFEA3948),
+                            ),
+                            SizedBox(height: 30.h),
+                            getCommunity(
+                              txt1: 'Second Hand & Vintage',
+                              txt2: 'Football',
+                              color1: const Color(0xFFD89F07),
+                              color2: const Color(0xFFBF6D84),
+                            ),
+                            SizedBox(height: 30.h),
+                            getCommunity(
+                              txt1: 'Yoga',
+                              txt2: 'Puppy',
+                              color1: const Color(0xFF62BAB6),
+                              color2: const Color(0xFFA9C80C),
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                    SizedBox(height: 40.h),
-                  ],
+                      SizedBox(height: 100.h),
+                      Container(
+                        height: 120.h,
+                        width: width,
+                        color: Colors.transparent,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              thirdRowWidget(),
+                              SizedBox(width: 26.w),
+                              thirdRowWidget(),
+                              SizedBox(width: 26.w),
+                              thirdRowWidget(),
+                              SizedBox(width: 26.w),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 40.h),
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
