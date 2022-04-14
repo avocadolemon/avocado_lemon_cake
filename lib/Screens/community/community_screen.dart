@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:avocado_lemon_cake/widgets/circle_bar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -13,8 +12,11 @@ class CommunityScreen extends StatefulWidget {
 class _CommunityScreenState extends State<CommunityScreen> {
   int _currentIndex = 0;
   Timer? _timer;
+
+  final List<Color> colors = [Colors.green, Colors.yellow, Colors.red];
+
   final List<String> imgList = [
-    "assets/imgs/3.png",
+    "assets/imgs/test.jpg",
     "assets/imgs/8.png",
     "assets/imgs/5.png",
     "assets/imgs/2.png",
@@ -97,39 +99,58 @@ class _CommunityScreenState extends State<CommunityScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 5.h),
-                      Row(
-                        children: [
-                          for (int i = 0; i < 3; i++)
-                            (i == 1 ? circleBar(true) : circleBar(false))
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                        child: GestureDetector(
+                          onTap: () =>
+                              Navigator.pushNamed(context, '/add-community'),
+                          child: Row(
+                            children: List.generate(
+                              3,
+                              (index) {
+                                return AnimatedContainer(
+                                  duration: const Duration(milliseconds: 150),
+                                  margin:
+                                      const EdgeInsets.symmetric(horizontal: 2),
+                                  height: index == 1 ? 15 : 12,
+                                  width: index == 1 ? 15 : 12,
+                                  decoration: BoxDecoration(
+                                    color: colors[index],
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(12),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
                       ),
-                      SizedBox(height: 30.h),
+                      SizedBox(height: 20.h),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           SizedBox(
-                            height: 100.h,
+                            height: 133.h,
                             width: width,
                             child: Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                                  const EdgeInsets.only(left: 16.0, right: 10),
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  FittedBox(
-                                    child: Text(
-                                      title[_currentIndex],
-                                      style: TextStyle(
-                                        color: const Color(0xffffffff),
-                                        fontWeight: FontWeight.w700,
-                                        fontFamily: "OpenSans",
-                                        fontStyle: FontStyle.normal,
-                                        fontSize: 35.0.sp,
-                                      ),
-                                      textAlign: TextAlign.center,
+                                  Text(
+                                    title[_currentIndex],
+                                    style: TextStyle(
+                                      color: const Color(0xffffffff),
+                                      fontWeight: FontWeight.w700,
+                                      fontFamily: "OpenSans",
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 35.0.sp,
                                     ),
+                                    textAlign: TextAlign.center,
                                   ),
                                   Text(
                                     subtitle[_currentIndex],
@@ -153,34 +174,41 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                 const EdgeInsets.symmetric(horizontal: 10.0),
                             child: Stack(
                               children: [
-                                const CircleAvatar(
-                                  backgroundColor: Colors.white,
-                                  child: Icon(
-                                    Icons.person,
-                                    color: Colors.black,
-                                    size: 28,
+                                const SizedBox(
+                                  height: 70,
+                                  width: 45,
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    child: Icon(
+                                      Icons.person,
+                                      color: Colors.black,
+                                      size: 28,
+                                    ),
                                   ),
                                 ),
-                                Positioned.directional(
-                                  textDirection: TextDirection.rtl,
-                                  bottom: 24.h,
-                                  start: 1.w,
-                                  end: 32.w,
-                                  child: Container(
-                                    width: 17,
-                                    height: 17,
-                                    decoration: const BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Color(0x290e1f35),
-                                          offset: Offset(0, 4),
-                                          blurRadius: 8,
-                                          spreadRadius: 0,
+                                SizedBox(
+                                  height: 40,
+                                  width: 45,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        width: 18,
+                                        height: 18,
+                                        decoration: const BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Color(0x290e1f35),
+                                              offset: Offset(0, 4),
+                                              blurRadius: 8,
+                                              spreadRadius: 0,
+                                            ),
+                                          ],
+                                          shape: BoxShape.circle,
+                                          color: Color(0xff31d641),
                                         ),
-                                      ],
-                                      shape: BoxShape.circle,
-                                      color: Color(0xff31d641),
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],

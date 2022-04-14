@@ -103,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       child: TextFormFieldWidget(
                         controller: _age,
                         text: 'Age',
-                        hintText: '22',
+                        hintText: '',
                         keyboardType: TextInputType.number,
                         textInputAction: TextInputAction.done,
                         validator: (value) {
@@ -263,13 +263,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   void initState() {
     super.initState();
+    _name = TextEditingController();
     _email = TextEditingController();
+    _age = TextEditingController();
     _pass = TextEditingController();
   }
 
   @override
   void dispose() {
+    _name!.clear();
     _email!.clear();
+    _age!.clear();
     _pass!.clear();
     super.dispose();
   }
