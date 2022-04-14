@@ -19,10 +19,12 @@ List<MyGroup> groupList = [
 ];
 
 List<MenuModel> menuItem = [
-  MenuModel(text: "Travel", isSelected: true),
-  MenuModel(text: "Travel", isSelected: false),
-  MenuModel(text: "Travel", isSelected: false),
-  MenuModel(text: "Travel", isSelected: false),
+  MenuModel(text: "Ages 0-5", isSelected: true),
+  MenuModel(text: "Ages 5-15", isSelected: false),
+  MenuModel(text: "A day trip", isSelected: false),
+  MenuModel(text: "Weekend trip", isSelected: false),
+  MenuModel(text: "1-3 miles away", isSelected: false),
+  MenuModel(text: "Close to home", isSelected: false),
 ];
 
 class GroupScreen extends StatefulWidget {
@@ -82,7 +84,7 @@ class _GroupScreenState extends State<GroupScreen> {
                   ],
                 ),
                 kSmallVerticalSpacing,
-                buildSlider(size),
+                buildSliderTwo(size),
                 kLargeVerticalSpacing,
                 Row(
                   children: [
@@ -112,47 +114,52 @@ class _GroupScreenState extends State<GroupScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kPad),
       child: Container(
+        width: double.infinity,
         padding: EdgeInsets.only(left: 10),
         decoration: BoxDecoration(
           color: AppColors.ksgrey.withOpacity(0.7),
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Row(
-          children: [
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.search,
-                  size: 18,
-                  color: AppColors.kwhite,
-                )),
-            Expanded(
-              child: GridView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.all(8),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  childAspectRatio: 2.5,
+        child: Container(
+          height: 50,
+          child: Row(
+            children: [
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.search,
+                    size: 18,
+                    color: AppColors.kwhite,
+                  )),
+              Expanded(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  // physics: NeverScrollableScrollPhysics(),
+                  padding: EdgeInsets.all(8),
+                  // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  //   crossAxisCount: 4,
+                  //   childAspectRatio: 2.5,
+                  // ),
+                  itemCount: menuItem.length,
+                  itemBuilder: (_, index) {
+                    return InkWell(
+                      onTap: () {
+                        setState(() {
+                          _selectedItem = index;
+                        });
+                      },
+                      child: MenuItem(
+                        index: index,
+                        selectedTab: _selectedItem ?? 0,
+                        title: menuItem[index].text,
+                      ),
+                    );
+                  },
                 ),
-                itemCount: menuItem.length,
-                itemBuilder: (_, index) {
-                  return InkWell(
-                    onTap: () {
-                      setState(() {
-                        _selectedItem = index;
-                      });
-                    },
-                    child: MenuItem(
-                      index: index,
-                      selectedTab: _selectedItem ?? 0,
-                      title: menuItem[index].text,
-                    ),
-                  );
-                },
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -162,23 +169,56 @@ class _GroupScreenState extends State<GroupScreen> {
     return Container(
       height: 250,
       child: PageView.builder(
-        controller: PageController(
-          viewportFraction: 0.85,
-        ),
-        padEnds: false,
+          controller: PageController(
+            viewportFraction: 0.85,
+          ),
+          padEnds: false,
           scrollDirection: Axis.horizontal,
           itemCount: groupList.length,
           itemBuilder: (_, index) {
-            return MyGroupSlide(
-              count: groupList[index].count,
-              image: groupList[index].image,
-              text: groupList[index].name,
-              size: size,
+            return InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, '/aboutGroup');
+              },
+              child: MyGroupSlide(
+                count: groupList[index].count,
+                image: groupList[index].image,
+                text: groupList[index].name,
+                size: size,
+              ),
+            );
+          }),
+    );
+  }
+
+  Container buildSliderTwo(Size size) {
+    return Container(
+      height: 250,
+      child: PageView.builder(
+          controller: PageController(
+            viewportFraction: 0.85,
+          ),
+          padEnds: false,
+          scrollDirection: Axis.horizontal,
+          itemCount: groupList.length,
+          itemBuilder: (_, index) {
+            return InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, '/groupConversation');
+              },
+              child: MyGroupSlide(
+                count: groupList[index].count,
+                image: groupList[index].image,
+                text: groupList[index].name,
+                size: size,
+              ),
             );
           }),
     );
   }
 }
+  
+
 
 class MenuItem extends StatelessWidget {
   const MenuItem({
@@ -195,6 +235,8 @@ class MenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 50,
+      width: 100,
       // padding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       margin: EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
@@ -203,8 +245,8 @@ class MenuItem extends StatelessWidget {
       ),
       child: Center(
           child: Text(title,
-              style: bodySmallText(context)
-                  .copyWith(color: AppColors.kwhite, fontSize: 11))),
+              style:
+                  bodyNormalText(context).copyWith(color: AppColors.kwhite))),
     );
   }
 }

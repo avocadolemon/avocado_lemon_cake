@@ -35,12 +35,12 @@ class MyApp extends StatelessWidget {
               routes: AppRoutes().routes,
               builder: (context, widget) {
                 ScreenUtil.setContext(context);
-                return MediaQuery(
+                return MediaQuery( 
                   data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
                   child: widget!,
                 );
               },
-              initialRoute: '/addImageScreen', // splash
+              initialRoute: '/splash', // splash
             );
           },
         );

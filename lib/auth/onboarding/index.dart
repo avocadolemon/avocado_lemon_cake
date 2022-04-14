@@ -21,6 +21,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         paragraph: "Discover and Connect with new and local Friends",
         image: SvgAssets.onboardImgOne),
     OnboardingContent(
+        height: 300.0,
         heading: "Create a Community",
         paragraph: "Expand your social circle by joining a new community group",
         image: SvgAssets.onboardImgTwo),

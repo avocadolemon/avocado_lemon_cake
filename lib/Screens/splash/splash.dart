@@ -46,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
               flex: 2
             ),
             Container(
-              height: 200,
+              height: 300,
               decoration: const BoxDecoration(
                 image: DecorationImage(image: AssetImage(ImageAssets.splashBG))
               ),
@@ -56,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             Container(
               height: 80,
-              decoration: const BoxDecoration(
+              decoration: const BoxDecoration( 
                 image: DecorationImage(image: AssetImage(ImageAssets.splashLogo))
               ),
             ),

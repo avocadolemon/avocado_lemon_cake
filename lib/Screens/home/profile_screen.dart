@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
+import 'package:avocado_lemon_cake/Screens/home/groups_screen.dart';
 import 'package:avocado_lemon_cake/utils/app_spacing.dart';
 import 'package:avocado_lemon_cake/utils/app_textstyle.dart';
 import 'package:avocado_lemon_cake/utils/assets_manager.dart';
@@ -17,6 +18,11 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
+List<MenuModel> _menuItem = [
+  MenuModel(text: "My 15", isSelected: true),
+  MenuModel(text: "Neighbourhood", isSelected: false),
+  MenuModel(text: "Street", isSelected: false),
+];
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool selectedNeighbourhood = false;
@@ -34,6 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    int? _selectedItem;
     return Scaffold(
         body: Column(
       children: [
@@ -123,6 +130,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   Padding _buildTabHeader(BuildContext context) {
+    int? _selectedItem;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kPad),
       child: Container(
@@ -140,6 +148,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   size: 18,
                   color: AppColors.kwhite,
                 )),
+            // Expanded(
+            //   child: GridView.builder(
+            //     shrinkWrap: true,
+            //     // scrollDirection: Axis.horizontal,
+            //     physics: NeverScrollableScrollPhysics(),
+            //     padding: EdgeInsets.all(8),
+            //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //       crossAxisCount: 3,
+            //       childAspectRatio: 2.5,
+            //     ),
+            //     itemCount: _menuItem.length,
+            //     itemBuilder: (_, index) {
+            //       return InkWell(
+            //         onTap: () {
+            //           setState(() {
+            //             _selectedItem = index;
+            //           });
+            //         },
+            //         child: ProfileItem(
+            //            index: index,
+            //           selectedTab: _selectedItem ?? 0,
+            //           title: _menuItem[index].text,
+            //         )                  
+            //       );
+            //     },
+            //   ),
+            // ),
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -165,11 +200,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           Text("My 15 ",
                               style: bodySmallText(context).copyWith(
-                                  color: AppColors.kwhite, fontSize: 10)),
+                                  color: AppColors.kwhite, fontSize: 11)),
                           Icon(
                             Icons.star,
                             color: AppColors.kprimary,
-                            size: 10,
+                            size: 11,
                           )
                         ],
                       ),
@@ -199,7 +234,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Center(
                           child: Text("Neighbourhood",
                               style: bodySmallText(context).copyWith(
-                                  color: AppColors.kwhite, fontSize: 10))),
+                                  color: AppColors.kwhite, fontSize: 11))),
                     ),
                   ),
                   kTinyHorizontalSpacing,
@@ -226,7 +261,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Center(
                           child: Text("Street",
                               style: bodySmallText(context).copyWith(
-                                  color: AppColors.kwhite, fontSize: 10))),
+                                  color: AppColors.kwhite, fontSize: 11))),
                     ),
                   ),
                   kTinyHorizontalSpacing,
@@ -246,7 +281,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Text(
-         title,
+          title,
           style:
               heading1(context).copyWith(color: AppColors.kblack, fontSize: 20),
         ),
@@ -317,3 +352,34 @@ class _BuildTileState extends State<BuildTile> {
     );
   }
 }
+
+
+class ProfileItem extends StatelessWidget {
+  const ProfileItem({
+    Key? key,
+    required this.selectedTab,
+    required this.title,
+    required this.index,
+  }) : super(key: key);
+
+  final int selectedTab;
+  final String title;
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+      margin: EdgeInsets.only(right: 5),
+      decoration: BoxDecoration(
+        color: selectedTab == index ? AppColors.kLime : AppColors.ksgrey,
+        borderRadius: BorderRadius.circular(kPad),
+      ),
+      child: Center(
+          child: Text(title,
+              style:
+                  bodyNormalText(context).copyWith(color: AppColors.kwhite))),
+    );
+  }
+}
+
