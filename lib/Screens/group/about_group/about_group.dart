@@ -29,7 +29,9 @@ class _AboutGroupState extends State<AboutGroup> {
           style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16.sp),
         ),
         leading: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+          },
           child: const Icon(Icons.arrow_back),
         ),
         actions: [
@@ -112,8 +114,8 @@ _showDialogBox(BuildContext context) {
         children: <Widget>[
           DialogOptions(
             title: 'ID of the Sling (10)',
-            titleColor: Colors.black,
-            backColor: Color(0xffFFCC00),
+            titleColor: Color(0xff8dd812),
+            backColor: Colors.black,
           ),
           DialogOptions(
             title: 'Send Message / Join',

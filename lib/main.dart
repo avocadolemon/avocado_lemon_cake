@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
                   child: widget!,
                 );
               },
-              initialRoute: '/addImageScreen',
+              initialRoute: '/aboutGroup', // splash
             );
           },
         );

@@ -1,3 +1,4 @@
+
 import 'package:avocado_lemon_cake/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -6,7 +7,7 @@ import 'app_responsiveness.dart';
 
 /// App TextStyles
 TextStyle heading1(BuildContext context) => TextStyle(
-      color: AppColors.kblack,
+      color: AppColors.kblack, 
       fontSize: 16.sp,
       // fontSize: responsive18(context),
       fontWeight: FontWeight.bold,

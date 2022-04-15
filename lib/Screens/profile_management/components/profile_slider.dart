@@ -87,7 +87,7 @@ class ProfileSlider extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          const Icon(Icons.heart_broken_rounded),
+                          const Icon(Icons.favorite),
                           SizedBox(
                             width: 10.w,
                           ),

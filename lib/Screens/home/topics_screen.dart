@@ -35,103 +35,110 @@ class _TopicScreenState extends State<TopicScreen> {
         kMediumVerticalSpacing,
         _buildTabHeader(context),
         kLargeVerticalSpacing,
-        Container(
-            margin: EdgeInsets.symmetric(horizontal: kPad),
-            padding: EdgeInsets.symmetric(vertical: kPad, horizontal: 20),
-            decoration: BoxDecoration(
-              color: AppColors.ksgrey.withOpacity(0.7),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Row(
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/aboutGroup');
+          },
+          child: Container(
+              margin: EdgeInsets.symmetric(horizontal: kPad),
+              padding: EdgeInsets.symmetric(vertical: kPad, horizontal: 20),
+              decoration: BoxDecoration(
+                color: AppColors.ksgrey.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: AppColors.kwhite,
+                            ),
+                            kTinyHorizontalSpacing,
+                            Text(
+                              "Neighbourhoods",
+                              style: bodyNormalText(context)
+                                  .copyWith(color: AppColors.kwhite),
+                            )
+                          ],
+                        ),
+                      ),
+                      Row(
                         children: [
                           Icon(
-                            Icons.location_on,
-                            color: AppColors.kwhite,
+                            Icons.star,
+                            size: 18,
+                            color: AppColors.kprimary,
                           ),
                           kTinyHorizontalSpacing,
                           Text(
-                            "Neighbourhoods",
-                            style: bodyNormalText(context)
-                                .copyWith(color: AppColors.kwhite),
-                          )
+                            "|",
+                            style: bodyNormalText(context).copyWith(
+                                color: AppColors.kwhite, fontSize: 10),
+                          ),
+                          kTinyHorizontalSpacing,
+                          Icon(
+                            Icons.notifications_outlined,
+                            size: 18,
+                            color: AppColors.kprimary,
+                          ),
                         ],
-                      ),
-                    ),
-                    Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          size: 18,
-                          color: AppColors.kprimary,
-                        ),
-                        kTinyHorizontalSpacing,
-                        Text(
-                          "|",
-                          style: bodyNormalText(context)
-                              .copyWith(color: AppColors.kwhite, fontSize: 10),
-                        ),
-                        kTinyHorizontalSpacing,
-                        Icon(
-                          Icons.notifications_outlined,
-                          size: 18,
-                          color: AppColors.kprimary,
-                        ),
-                      ],
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.04,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Topic name",
-                      style: bodySmallText(context)
-                          .copyWith(color: AppColors.kwhite),
-                    ),
-                    kTinyHorizontalSpacing,
-                    Text(
-                      "|",
-                      style: bodyNormalText(context)
-                          .copyWith(color: AppColors.kwhite, fontSize: 10),
-                    ),
-                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                      Icon(
-                        Icons.remove_red_eye_outlined,
-                        size: 14,
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.04,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Topic name",
+                        style: bodySmallText(context)
+                            .copyWith(color: AppColors.kwhite),
                       ),
                       kTinyHorizontalSpacing,
                       Text(
-                        "35",
+                        "|",
                         style: bodyNormalText(context)
                             .copyWith(color: AppColors.kwhite, fontSize: 10),
-                      )
-                    ]),
-                    kTinyHorizontalSpacing,
-                    Text(
-                      "|",
-                      style: bodyNormalText(context)
-                          .copyWith(color: AppColors.kwhite, fontSize: 10),
-                    ),
-                    kTinyHorizontalSpacing,
-                    Text(
-                      "17.20.2022",
-                      style: bodyTinyText(context)
-                          .copyWith(color: AppColors.kwhite),
-                    ),
-                  ],
-                )
-              ],
-            ))
+                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Icon(
+                              Icons.remove_red_eye_outlined,
+                              size: 14,
+                            ),
+                            kTinyHorizontalSpacing,
+                            Text(
+                              "35",
+                              style: bodyNormalText(context).copyWith(
+                                  color: AppColors.kwhite, fontSize: 10),
+                            )
+                          ]),
+                      kTinyHorizontalSpacing,
+                      Text(
+                        "|",
+                        style: bodyNormalText(context)
+                            .copyWith(color: AppColors.kwhite, fontSize: 10),
+                      ),
+                      kTinyHorizontalSpacing,
+                      Text(
+                        "17.20.2022",
+                        style: bodyTinyText(context)
+                            .copyWith(color: AppColors.kwhite),
+                      ),
+                    ],
+                  )
+                ],
+              )),
+        )
       ],
     ));
   }
@@ -215,4 +222,3 @@ class MenuItem extends StatelessWidget {
     );
   }
 }
-

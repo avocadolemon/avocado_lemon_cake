@@ -17,7 +17,6 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-
 class _ProfileScreenState extends State<ProfileScreen> {
   bool selectedNeighbourhood = false;
   bool firstTab = true;
@@ -40,84 +39,90 @@ class _ProfileScreenState extends State<ProfileScreen> {
         kMediumVerticalSpacing,
         _buildTabHeader(context),
         kLargeVerticalSpacing,
-        Container(
-            margin: EdgeInsets.symmetric(horizontal: kPad),
-            padding: EdgeInsets.symmetric(vertical: kPad),
-            decoration: BoxDecoration(
-              color: AppColors.ksgrey.withOpacity(0.7),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 1,
-                  child: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage(ImageAssets.profile),
-                    backgroundColor: AppColors.kblack,
+        GestureDetector(
+          onTap: () {
+            Navigator.pushNamed(context, '/ProfileManagement');
+          },
+          child: Container(
+              margin: EdgeInsets.symmetric(horizontal: kPad),
+              padding: EdgeInsets.symmetric(vertical: kPad),
+              decoration: BoxDecoration(
+                color: AppColors.ksgrey.withOpacity(0.7),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 1,
+                    child: CircleAvatar(
+                      radius: 30,
+                      backgroundImage: AssetImage(ImageAssets.profile),
+                      backgroundColor: AppColors.kblack,
+                    ),
                   ),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Tzvika lahav".toUpperCase(),
-                          style: bodyNormalText(context).copyWith(
-                              color: AppColors.kwhite, fontSize: 18.sp),
-                        ),
-                        kTinyVerticalSpacing,
-                        Text(
-                          "This is my important status",
-                          style: bodySmallText(context).copyWith(
-                              color: Color.fromARGB(255, 250, 130, 170)
-                                  .withOpacity(0.6)),
-                        ),
-                        kTinyVerticalSpacing,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Icon(
-                                  Icons.camera_alt_outlined,
-                                  size: 14,
-                                  color: AppColors.kwhite.withOpacity(0.7),
-                                ),
-                                kTinyHorizontalSpacing,
-                                Text(
-                                  "3 Photos",
-                                  style: bodySmallText(context).copyWith(
-                                      color: AppColors.kwhite.withOpacity(0.7)),
-                                )
-                              ],
-                            ),
-                            kMediumHorizontalSpacing,
-                            Container(
-                              child: Row(
+                  Expanded(
+                    flex: 2,
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Tzvika lahav".toUpperCase(),
+                            style: bodyNormalText(context).copyWith(
+                                color: AppColors.kwhite, fontSize: 18.sp),
+                          ),
+                          kTinyVerticalSpacing,
+                          Text(
+                            "This is my important status",
+                            style: bodySmallText(context).copyWith(
+                                color: Color.fromARGB(255, 250, 130, 170)
+                                    .withOpacity(0.6)),
+                          ),
+                          kTinyVerticalSpacing,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Row(
                                 children: [
                                   Icon(
-                                    Icons.location_on_outlined,
+                                    Icons.camera_alt_outlined,
                                     size: 14,
                                     color: AppColors.kwhite.withOpacity(0.7),
                                   ),
                                   kTinyHorizontalSpacing,
                                   Text(
-                                    "Jerusalem",
+                                    "3 Photos",
                                     style: bodySmallText(context).copyWith(
                                         color:
                                             AppColors.kwhite.withOpacity(0.7)),
                                   )
                                 ],
                               ),
-                            )
-                          ],
-                        )
-                      ]),
-                )
-              ],
-            ))
+                              kMediumHorizontalSpacing,
+                              Container(
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      Icons.location_on_outlined,
+                                      size: 14,
+                                      color: AppColors.kwhite.withOpacity(0.7),
+                                    ),
+                                    kTinyHorizontalSpacing,
+                                    Text(
+                                      "Jerusalem",
+                                      style: bodySmallText(context).copyWith(
+                                          color: AppColors.kwhite
+                                              .withOpacity(0.7)),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          )
+                        ]),
+                  )
+                ],
+              )),
+        )
       ],
     ));
   }
@@ -185,7 +190,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       });
                       CustomModal.showModal(
                           context: context,
-                          childWidget: _buildCategoryData(context, "Neighbourhood"));
+                          childWidget:
+                              _buildCategoryData(context, "Neighbourhood"));
                     },
                     child: Container(
                       padding:
@@ -246,7 +252,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
         child: Text(
-         title,
+          title,
           style:
               heading1(context).copyWith(color: AppColors.kblack, fontSize: 20),
         ),
