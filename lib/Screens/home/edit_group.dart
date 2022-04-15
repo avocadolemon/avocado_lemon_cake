@@ -78,7 +78,7 @@ class _EditNewGroupState extends State<EditNewGroup> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Center(
-                      child: Text("Hatikva Neighbourhood",
+                      child: Text("Neighbourhood",
                           style: heading1(context).copyWith(
                               color: AppColors.kwhite, fontSize: 20))),
                   kLargeVerticalSpacing,
@@ -105,7 +105,7 @@ class _EditNewGroupState extends State<EditNewGroup> {
                       ),
                       kLargeVerticalSpacing,
                       TextFormFieldWidget(
-                        controller: groupNameController,
+                        controller: aboutUsController,
                         text: "About us & Age",
                         validator: (String? value) {
                           if (value == "") {
@@ -118,7 +118,7 @@ class _EditNewGroupState extends State<EditNewGroup> {
                       ),
                       kLargeVerticalSpacing,
                       TextFormFieldWidget(
-                        controller: betwController,
+                        controller: freqController,
                         text: "Frequency",
                         validator: (String? value) {
                           if (value == "") {
@@ -144,7 +144,7 @@ class _EditNewGroupState extends State<EditNewGroup> {
                       ),
                       kLargeVerticalSpacing,
                       TextFormFieldWidget(
-                        controller: betwController,
+                        controller: whereController,
                         text: "Where and when are you meeting",
                         maxLines: 4,
                         validator: (String? value) {

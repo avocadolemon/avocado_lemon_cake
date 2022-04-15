@@ -130,12 +130,12 @@ class _HomeTabState extends State<HomeTab> {
                       ),
                       child: Row(
                         children: [
-                          const Icon(
-                            Icons.keyboard_arrow_down_sharp,
-                            size: 16,
-                            color: AppColors.kwhite,
-                          ),
-                          kTinyHorizontalSpacing,
+                          // const Icon(
+                          //   Icons.keyboard_arrow_down_sharp,
+                          //   size: 16,
+                          //   color: AppColors.kwhite,
+                          // ),
+                          // kTinyHorizontalSpacing,
                           Text(
                             "Travel with Kids",
                             style: bodyNormalText(context).copyWith(

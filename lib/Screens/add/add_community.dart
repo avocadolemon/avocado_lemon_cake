@@ -185,6 +185,7 @@ class _AddCommunityState extends State<AddCommunity>
           child: InkWell(
             onTap: () {
               Navigator.pushNamed(context, '/community-screen');
+              // Navigator.pushNamed(context, '/register');
             },
             child: Container(
                 padding: EdgeInsets.all(6),

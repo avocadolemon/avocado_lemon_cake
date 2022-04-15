@@ -10,11 +10,14 @@ class OnboardingContent extends StatefulWidget {
   final String image;
   final String heading;
   final String paragraph;
+  final double? height;
   const OnboardingContent(
       {Key? key,
       required this.image,
       required this.heading,
-      required this.paragraph})
+      required this.paragraph,
+      this.height = 200.0
+      })
       : super(key: key);
 
   @override
@@ -35,7 +38,7 @@ class _OnboardingContentState extends State<OnboardingContent> {
             Spacer(),
             SvgPicture.asset(
               widget.image,
-              height: 200,
+              height: widget.height,
             ),
             Spacer(
               flex: 1,

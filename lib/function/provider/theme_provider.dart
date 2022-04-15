@@ -15,7 +15,7 @@ class ThemeProvider extends ChangeNotifier {
 class MyThemes {
   static final darkTheme = ThemeData(
     bottomSheetTheme: const BottomSheetThemeData(
-      backgroundColor: AppColors.kwhite,
+      backgroundColor: Colors.white,
       modalBackgroundColor: AppColors.kwhite,
     ),
     fontFamily: 'OpenSans',
