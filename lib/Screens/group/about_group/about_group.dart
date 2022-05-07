@@ -1,11 +1,13 @@
 import 'dart:ffi';
 
 import 'package:avocado_lemon_cake/Screens/group/about_group/components/group_details.dart';
-import 'package:avocado_lemon_cake/Screens/group/about_group/components/more_button.dart';
+import 'package:avocado_lemon_cake/widgets/more_button.dart';
 import 'package:avocado_lemon_cake/Screens/group/about_group/components/profiles_avater.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../widgets/more_button.dart';
 import 'components/groupID_image_slider.dart';
 
 class AboutGroup extends StatefulWidget {
@@ -24,12 +26,12 @@ class _AboutGroupState extends State<AboutGroup> {
       appBar: AppBar(
         title: Text(
           groupID,
-          style: const TextStyle(
-            fontWeight: FontWeight.w700,
-          ),
+          style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16.sp),
         ),
         leading: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            Navigator.pop(context);
+          },
           child: const Icon(Icons.arrow_back),
         ),
         actions: [
@@ -62,12 +64,14 @@ class _AboutGroupState extends State<AboutGroup> {
             ),
             const GroupDetails(),
             const ProfileList(),
-
+            SizedBox(
+              height: 10.h,
+            ),
             // buttom button
             Padding(
               padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 5.h),
               child: Container(
-                height: 50.h,
+                height: 40.h,
                 decoration: BoxDecoration(
                     color: const Color(0xffFFCC00),
                     borderRadius: BorderRadius.circular(25.h)),
@@ -110,8 +114,8 @@ _showDialogBox(BuildContext context) {
         children: <Widget>[
           DialogOptions(
             title: 'ID of the Sling (10)',
-            titleColor: Colors.black,
-            backColor: Color(0xffFFCC00),
+            titleColor: Color(0xff8dd812),
+            backColor: Colors.black,
           ),
           DialogOptions(
             title: 'Send Message / Join',
@@ -143,7 +147,8 @@ class DialogOptions extends StatelessWidget {
     Key? key,
     required this.title,
     this.titleColor,
-    this.backColor = Colors.black, this.onpress,
+    this.backColor = Colors.black,
+    this.onpress,
   }) : super(key: key);
 
   @override
