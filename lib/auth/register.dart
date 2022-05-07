@@ -1,3 +1,4 @@
+import 'package:avocado_lemon_cake/function/repository/auth_repository.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,6 +23,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String? _selectedValue;
   String _sex = '';
   List<String> itemName = ['female', 'male'];
+  final AuthRepository _authRepository = AuthRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -142,9 +144,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   btnName: 'Sign-up',
                   enabtn: enabtn,
                   startLoad: _loadBtn,
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.pushNamed(context, "/homeWrapper");
+                      await Future.value(_authRepository.createWithEmailAndPwd(
+                          _email!.text,
+                          _pass!.text,
+                          context,
+                          _name!.text,
+                          _age!.text,
+                          _selectedValue!));
                     }
                   },
                 ),

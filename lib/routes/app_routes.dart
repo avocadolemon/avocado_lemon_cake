@@ -31,7 +31,7 @@ class AppRoutes {
     '/check-mail': (context) => const CheckMail(),
     '/create-pass': (context) => const CreateNewPassword(),
     '/pass-success': (context) => const PasswordResetSuccess(),
-    '/splash': (context) => const SplashScreen(),
+    // '/splash': (context) => const SplashScreen(),
     '/onboarding': (context) => const OnBoardingScreen(),
     '/add-city': (context) => const AddCity(),
     '/community-screen': (context) => const CommunityScreen(),

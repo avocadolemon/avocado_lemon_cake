@@ -26,6 +26,7 @@ dependencies:
   google_sign_in: ^5.0.7
   provider: ^6.0.2
   modal_bottom_sheet:
+  simple_connection_checker: ^0.2.1
  
   
   
