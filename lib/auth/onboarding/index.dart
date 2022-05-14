@@ -77,8 +77,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   onPressed: () {},
                   child: Text(
                     currentIndex == slides.length - 1 ? "" : "Skip",
-                    style:
-                        bodyNormalText(context).copyWith(color: AppColors.kwhite, fontSize: 14.sp),
+                    style: bodyNormalText(context)
+                        .copyWith(color: AppColors.kwhite, fontSize: 14.sp),
                   ),
                 ),
               ),
@@ -99,18 +99,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     return slides[index];
                   }),
             ),
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  slides.length,
-                  (index) => buildDot(index, context),
-                ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                slides.length,
+                (index) => buildDot(index, context),
               ),
             ),
-            SizedBox(
-              height: 32.h,
-            ),
+            SizedBox(height: 32.h),
             Container(
               height: 50,
               margin: EdgeInsets.symmetric(vertical: 40),

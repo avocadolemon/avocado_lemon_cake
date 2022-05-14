@@ -1,6 +1,6 @@
-import 'package:avocado_lemon_cake/screens/home/groups_screen.dart';
-import 'package:avocado_lemon_cake/screens/home/profile_screen.dart';
-import 'package:avocado_lemon_cake/screens/home/topics_screen.dart';
+import 'package:avocado_lemon_cake/Screens/home/groups_screen.dart';
+import 'package:avocado_lemon_cake/Screens/home/profile_screen.dart';
+import 'package:avocado_lemon_cake/Screens/home/topics_screen.dart';
 import 'package:avocado_lemon_cake/utils/app_textstyle.dart';
 import 'package:avocado_lemon_cake/utils/colors.dart';
 import 'package:flutter/material.dart';

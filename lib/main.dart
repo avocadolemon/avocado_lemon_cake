@@ -6,6 +6,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+
 import 'Screens/home/home_tab.dart';
 import 'Screens/splash/splash.dart';
 import 'auth/onboarding/index.dart';

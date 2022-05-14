@@ -1,9 +1,8 @@
 import 'dart:ffi';
 
 import 'package:avocado_lemon_cake/Screens/group/about_group/components/group_details.dart';
-import 'package:avocado_lemon_cake/widgets/more_button.dart';
 import 'package:avocado_lemon_cake/Screens/group/about_group/components/profiles_avater.dart';
-
+import 'package:avocado_lemon_cake/widgets/more_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
