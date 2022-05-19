@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:avocado_lemon_cake/core/model/city_model.dart';
 import 'package:avocado_lemon_cake/utils/app_spacing.dart';
 import 'package:avocado_lemon_cake/widgets/button_widget.dart';
@@ -18,7 +16,7 @@ class AddCommunity extends StatefulWidget {
 
 class _AddCommunityState extends State<AddCommunity> {
   int _isSelected = 0;
-  List<String> communit = [];
+  List<int> communit = [];
 
   @override
   void initState() {
@@ -46,7 +44,7 @@ class _AddCommunityState extends State<AddCommunity> {
                 startLoad: false,
               ),
             )
-          : Center(),
+          : const Center(),
       body: SizedBox(
         height: double.infinity,
         width: double.infinity,
@@ -81,20 +79,20 @@ class _AddCommunityState extends State<AddCommunity> {
                   return InkWell(
                     onTap: () {
                       setState(() {
-                        if (communit.contains('${communityList[index].id}')) {
-                          communit.remove("${communityList[index].id}");
+                        if (communit.contains(communityList[index].id)) {
+                          communit.remove(communityList[index].id);
                         } else if (communit.length >= 6) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
+                            const SnackBar(
                               backgroundColor: Colors.black,
-                              content: const Text(
+                              content: Text(
                                 'You cannot select more than six communities.',
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
                           );
                         } else {
-                          communit.add("${communityList[index].id}");
+                          communit.add(communityList[index].id as int);
                         }
                         debugPrint(communit.toString());
                       });
@@ -105,10 +103,9 @@ class _AddCommunityState extends State<AddCommunity> {
                         image: communityList[index].image,
                         city: communityList[index].cityName,
                         subCity: communityList[index].citySubName,
-                        selected:
-                            communit.contains('${communityList[index].id}')
-                                ? true
-                                : false,
+                        selected: communit.contains(communityList[index].id)
+                            ? true
+                            : false,
                       ),
                     ),
                   );

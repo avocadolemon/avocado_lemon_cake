@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CommunityScreen extends StatefulWidget {
-  final List<String> communities;
+  final List<int> communities;
   const CommunityScreen({Key? key, required this.communities})
       : super(key: key);
 
@@ -15,6 +15,8 @@ class CommunityScreen extends StatefulWidget {
 class _CommunityScreenState extends State<CommunityScreen> {
   int _currentIndex = 0;
   Timer? _timer;
+  List<int> communities = [];
+  List<CityModel> selectedCommunt = [];
 
   final List<Color> colors = [Colors.green, Colors.yellow, Colors.red];
 
@@ -54,15 +56,20 @@ class _CommunityScreenState extends State<CommunityScreen> {
   @override
   void initState() {
     super.initState();
+    communities = widget.communities;
+    for (var community in communityList) {
+      if (communities.contains(community.id)) {
+        setState(() {
+          selectedCommunt.add(community);
+        });
+      }
+    }
     _timer = Timer.periodic(const Duration(seconds: 6), (timer) async {
-      debugPrint(widget.communities.length.toString());
       if (mounted) {
         setState(() {
-          if (_currentIndex + 1 == widget.communities.length) {
+          if (_currentIndex + 1 == communities.length) {
             _timer!.cancel();
-            debugPrint('Restart framework. ');
-            _currentIndex = 0;
-            // Navigator.pushNamed(context, '/register');
+            Navigator.pushNamed(context, '/register');
           } else {
             _currentIndex = _currentIndex + 1;
           }
@@ -81,14 +88,9 @@ class _CommunityScreenState extends State<CommunityScreen> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
-    var idds = widget.communities;
-    // final searchResult = communityList
-    //     .where((element) => element.id.)
-    //     .toList();
-    for (communityList in widget.communities.join(',')) {
-      debugPrint('Samuel is here babae');
-      debugPrint(communityList.length.toString());
-    }
+    int line1 = selectedCommunt.length > 3 ? 3 : selectedCommunt.length;
+    int line2 = selectedCommunt.length > 3 ? selectedCommunt.length - 3 : 0;
+    print('$communities scom');
 
     return Scaffold(
       body: SafeArea(
@@ -156,7 +158,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    communityList[_currentIndex].cityName,
+                                    selectedCommunt[_currentIndex].cityName,
                                     style: TextStyle(
                                       color: const Color(0xffffffff),
                                       fontWeight: FontWeight.w700,
@@ -167,7 +169,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                     textAlign: TextAlign.center,
                                   ),
                                   Text(
-                                    communityList[_currentIndex].citySubName,
+                                    selectedCommunt[_currentIndex].citySubName,
                                     style: TextStyle(
                                       color: const Color(0xffffffff),
                                       fontWeight: FontWeight.w300,
@@ -238,7 +240,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                       SizedBox(
                         height: 230.h,
                         width: width,
-                        child: getCommunity(2, 1),
+                        child: getCommunity(line1, line2),
                       ),
                       SizedBox(height: 100.h),
                       Container(
@@ -297,7 +299,22 @@ class _CommunityScreenState extends State<CommunityScreen> {
                             child: const Text('Cancel'),
                           ),
                           TextButton(
-                              onPressed: () {}, child: const Text('Delete')),
+                            onPressed: () {
+                              setState(() {
+                                if (communities
+                                    .contains(communityList[index].id)) {
+                                  communities.remove(communityList[index].id);
+                                  print('removed baby');
+                                } else {
+                                  print('not removed');
+                                }
+                              });
+                              Navigator.of(context).pop();
+                              print(communities);
+                              print(communities.length);
+                            },
+                            child: const Text('Delete'),
+                          ),
                         ],
                       );
                     },
@@ -311,7 +328,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                     padding:
                         const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
                     decoration: BoxDecoration(
-                      color: communityList[index].color,
+                      color: selectedCommunt[index].color,
                       borderRadius: const BorderRadius.only(
                         topRight: Radius.circular(30),
                         bottomRight: Radius.circular(30),
@@ -319,7 +336,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                     ),
                     child: Center(
                       child: Text(
-                        communityList[index].cityName,
+                        selectedCommunt[index].cityName,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 13.sp,
@@ -357,7 +374,23 @@ class _CommunityScreenState extends State<CommunityScreen> {
                             child: const Text('Cancel'),
                           ),
                           TextButton(
-                              onPressed: () {}, child: const Text('Delete')),
+                            onPressed: () {
+                              setState(() {
+                                if (communities
+                                    .contains(communityList[index].id)) {
+                                  communities.remove(communityList[index].id);
+                                  debugPrint('removed baby');
+                                } else {
+                                  debugPrint('not removed');
+                                }
+                              });
+                              Navigator.of(context).pop();
+                              debugPrint('$communities');
+                              print(communities.length);
+                              print(communityList[index].id);
+                            },
+                            child: const Text('Delete'),
+                          ),
                         ],
                       );
                     },
@@ -373,7 +406,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 1),
                         decoration: BoxDecoration(
-                          color: communityList[add].color,
+                          color: selectedCommunt[add].color,
                           borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(30),
                             bottomLeft: Radius.circular(30),
@@ -381,7 +414,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                         ),
                         child: Center(
                           child: Text(
-                            communityList[add].cityName,
+                            selectedCommunt[add].cityName,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 13.sp,
