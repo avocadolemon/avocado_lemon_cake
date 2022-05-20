@@ -34,7 +34,7 @@ class ProfileList extends StatelessWidget {
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(30.h)),
                 height: 70.h,
-                width: 220.w,
+                width: 240.w,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: 20,

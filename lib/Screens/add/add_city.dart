@@ -65,20 +65,20 @@ class _AddCityState extends State<AddCity> {
     return AppBar(
       automaticallyImplyLeading: true,
       title: Text("Select Your City", style: heading1(context).copyWith(color: AppColors.kwhite)),
-      actions: [
-        Padding(
-          padding: EdgeInsets.only(right: 20),
-          child: Container(
-            padding: EdgeInsets.all(6),
-            decoration: BoxDecoration(
-              color: AppColors.ksgrey,
-              shape: BoxShape.circle,
-            ),
-            child: Icon(Icons.location_city, color: AppColors.kwhite, size: 14,)
-            // child: ,
-          ),
-        )
-      ],
+      // actions: [
+      //   Padding(
+      //     padding: EdgeInsets.only(right: 20),
+      //     child: Container(
+      //       padding: EdgeInsets.all(6),
+      //       decoration: BoxDecoration(
+      //         color: AppColors.ksgrey,
+      //         shape: BoxShape.circle,
+      //       ),
+      //       child: Icon(Icons.location_city, color: AppColors.kwhite, size: 14,)
+      //       // child: ,
+      //     ),
+      //   )
+      // ],
     );
   }
 }

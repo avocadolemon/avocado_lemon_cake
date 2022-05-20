@@ -194,7 +194,7 @@ class _AddCommunityState extends State<AddCommunity>
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  Icons.location_city,
+                  Icons.home,
                   color: AppColors.kwhite,
                   size: 14,
                 )

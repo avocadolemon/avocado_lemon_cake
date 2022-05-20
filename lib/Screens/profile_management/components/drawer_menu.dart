@@ -111,6 +111,7 @@ class DrawerMdenu extends StatelessWidget {
               color: Colors.red,
             ),
           ),
+          const Divider(),
           const ListTile(
             leading: SwitchThemeColor(),
             title: Text('Change Theme'),

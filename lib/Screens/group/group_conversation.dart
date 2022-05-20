@@ -26,7 +26,10 @@ List<AddGroupModel> list = [
 ];
 
 class GroupConversation extends StatelessWidget {
-  const GroupConversation({Key? key}) : super(key: key);
+  // group title
+  final String? groupTitle;
+  const GroupConversation({Key? key, this.groupTitle = 'My group title'})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,13 +41,46 @@ class GroupConversation extends StatelessWidget {
             Divider(
               color: AppColors.kwhite.withOpacity(0.8),
             ),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              alignment: Alignment.centerRight,
-              child: Text(
-                "Sed ligula erat, mauris",
-                style: bodyNormalText(context)
-                    .copyWith(color: AppColors.kwhite, fontSize: 16.sp),
+            Padding(
+              padding: EdgeInsets.only(
+                  left: 20.w, right: 20.w, top: 5.h, bottom: 5.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Text('55',
+                          style: bodyNormalText(context).copyWith(
+                              color: AppColors.kwhite, fontSize: 16.sp)),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Icon(
+                        Icons.remove_red_eye,
+                        color: AppColors.kprimary,
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text('22',
+                          style: bodyNormalText(context).copyWith(
+                              color: AppColors.kwhite, fontSize: 16.sp)),
+                      SizedBox(
+                        width: 10.w,
+                      ),
+                      Icon(
+                        Icons.access_time,
+                        color: AppColors.kprimary,
+                      )
+                    ],
+                  ),
+                  Text(
+                    "Sed ligula erat, mauris",
+                    style: bodyNormalText(context)
+                        .copyWith(color: AppColors.kwhite, fontSize: 16.sp),
+                  ),
+                ],
               ),
             ),
             Divider(
@@ -147,13 +183,32 @@ class GroupConversation extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          Padding(
+            padding: EdgeInsets.only(right: 20.w),
+            child: Container(
+              alignment: Alignment.centerLeft,
+              padding: EdgeInsets.only(left: 20.w),
+              height: 30.h,
+              width: 220.w,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 46, 49, 51),
+                  borderRadius: BorderRadius.circular(5.h)),
+              child: Text(
+                '$groupTitle',
+                style: TextStyle(
+                    color: AppColors.kprimary,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16),
+              ),
+            ),
+          ),
           Icon(
             Icons.star_border,
             color: AppColors.kprimary,
           ),
           kTinyHorizontalSpacing,
           Icon(
-            Icons.notifications_none_outlined,
+            Icons.notification_add,
             color: AppColors.kprimary,
           ),
           kTinyHorizontalSpacing,
