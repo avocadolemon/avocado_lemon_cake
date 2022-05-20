@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
 
-import 'package:avocado_lemon_cake/Screens/home/groups_screen.dart';
 import 'package:avocado_lemon_cake/utils/app_spacing.dart';
 import 'package:avocado_lemon_cake/utils/app_textstyle.dart';
 import 'package:avocado_lemon_cake/utils/assets_manager.dart';

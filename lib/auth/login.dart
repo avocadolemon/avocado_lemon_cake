@@ -1,3 +1,4 @@
+import 'package:avocado_lemon_cake/function/repository/auth_repository.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController? _email, _pass;
   bool hideText = true, enabtn = true, _loadBtn = false;
+  final AuthRepository _authRepository = AuthRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -97,7 +99,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   startLoad: _loadBtn,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      Navigator.pushNamed(context, "/homeWrapper");
+                      _authRepository.signInWithEmail(_email!.text, _pass!.text, context);
                     }
                   },
                 ),

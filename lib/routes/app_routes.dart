@@ -1,27 +1,24 @@
 import 'package:avocado_lemon_cake/Screens/group/about_group/about_group.dart';
-import 'package:avocado_lemon_cake/Screens/group/about_group/components/profiles_avater.dart';
+import 'package:avocado_lemon_cake/Screens/group/group_conversation.dart';
+import 'package:avocado_lemon_cake/Screens/home/add_group.dart';
 import 'package:avocado_lemon_cake/Screens/home/edit_group.dart';
+import 'package:avocado_lemon_cake/Screens/home/groups_screen.dart';
+import 'package:avocado_lemon_cake/Screens/home/home_tab.dart';
 import 'package:avocado_lemon_cake/Screens/profile_management/profile_management.dart';
 import 'package:avocado_lemon_cake/auth/onboarding/index.dart';
-import 'package:avocado_lemon_cake/screens/group/group_conversation.dart';
-import 'package:avocado_lemon_cake/screens/home/add_group.dart';
-import 'package:avocado_lemon_cake/screens/home/groups_screen.dart';
-import 'package:avocado_lemon_cake/screens/home/home_tab.dart';
 import 'package:flutter/material.dart';
+import '../Screens/add/add_city.dart';
+import '../Screens/add/add_community.dart';
+import '../Screens/home_page.dart';
+import '../Screens/profile-management/add_image_screen.dart';
+import '../Screens/profile-management/community_survery.dart';
+import '../Screens/profile-management/edit_personal_data.dart';
 import '../auth/check_mail.dart';
 import '../auth/create_new_pass.dart';
 import '../auth/forgot_pass.dart';
 import '../auth/login.dart';
 import '../auth/pass_reset_success.dart';
 import '../auth/register.dart';
-import '../screens/add/add_city.dart';
-import '../screens/add/add_community.dart';
-import '../screens/community/community_screen.dart';
-import '../screens/home_page.dart';
-import '../screens/profile-management/add_image_screen.dart';
-import '../screens/profile-management/community_survery.dart';
-import '../screens/profile-management/edit_personal_data.dart';
-import '../screens/splash/splash.dart';
 
 class AppRoutes {
   Map<String, Widget Function(BuildContext context)> routes =
@@ -33,10 +30,10 @@ class AppRoutes {
     '/check-mail': (context) => const CheckMail(),
     '/create-pass': (context) => const CreateNewPassword(),
     '/pass-success': (context) => const PasswordResetSuccess(),
-    '/splash': (context) => const SplashScreen(),
+    // '/splash': (context) => const SplashScreen(),
     '/onboarding': (context) => const OnBoardingScreen(),
     '/add-city': (context) => const AddCity(),
-    '/community-screen': (context) => const CommunityScreen(),
+    // '/community-screen': (context) => CommunityScreen(),
     '/add-community': (context) => const AddCommunity(),
     '/home': (context) => const GroupScreen(),
     '/homeWrapper': (context) => const HomeTab(),

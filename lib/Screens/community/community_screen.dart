@@ -1,9 +1,12 @@
 import 'dart:async';
+import 'package:avocado_lemon_cake/core/model/city_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CommunityScreen extends StatefulWidget {
-  const CommunityScreen({Key? key}) : super(key: key);
+  final List<int> communities;
+  const CommunityScreen({Key? key, required this.communities})
+      : super(key: key);
 
   @override
   State<CommunityScreen> createState() => _CommunityScreenState();
@@ -12,6 +15,8 @@ class CommunityScreen extends StatefulWidget {
 class _CommunityScreenState extends State<CommunityScreen> {
   int _currentIndex = 0;
   Timer? _timer;
+  List<int> communities = [];
+  List<CityModel> selectedCommunt = [];
 
   final List<Color> colors = [Colors.green, Colors.yellow, Colors.red];
 
@@ -51,10 +56,18 @@ class _CommunityScreenState extends State<CommunityScreen> {
   @override
   void initState() {
     super.initState();
+    communities = widget.communities;
+    for (var community in communityList) {
+      if (communities.contains(community.id)) {
+        setState(() {
+          selectedCommunt.add(community);
+        });
+      }
+    }
     _timer = Timer.periodic(const Duration(seconds: 6), (timer) async {
       if (mounted) {
         setState(() {
-          if (_currentIndex + 1 == imgList.length) {
+          if (_currentIndex + 1 == communities.length) {
             _timer!.cancel();
             Navigator.pushNamed(context, '/register');
           } else {
@@ -75,6 +88,9 @@ class _CommunityScreenState extends State<CommunityScreen> {
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
+    int line1 = selectedCommunt.length > 3 ? 3 : selectedCommunt.length;
+    int line2 = selectedCommunt.length > 3 ? selectedCommunt.length - 3 : 0;
+    print('$communities scom');
 
     return Scaffold(
       body: SafeArea(
@@ -142,7 +158,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    title[_currentIndex],
+                                    selectedCommunt[_currentIndex].cityName,
                                     style: TextStyle(
                                       color: const Color(0xffffffff),
                                       fontWeight: FontWeight.w700,
@@ -153,7 +169,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                     textAlign: TextAlign.center,
                                   ),
                                   Text(
-                                    subtitle[_currentIndex],
+                                    selectedCommunt[_currentIndex].citySubName,
                                     style: TextStyle(
                                       color: const Color(0xffffffff),
                                       fontWeight: FontWeight.w300,
@@ -172,46 +188,50 @@ class _CommunityScreenState extends State<CommunityScreen> {
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: Stack(
-                              children: [
-                                const SizedBox(
-                                  height: 70,
-                                  width: 45,
-                                  child: CircleAvatar(
-                                    backgroundColor: Colors.white,
-                                    child: Icon(
-                                      Icons.person,
-                                      color: Colors.black,
-                                      size: 28,
+                            child: GestureDetector(
+                              onTap: () => Navigator.of(context)
+                                  .pushNamed('/ProfileManagement'),
+                              child: Stack(
+                                children: [
+                                  const SizedBox(
+                                    height: 70,
+                                    width: 45,
+                                    child: CircleAvatar(
+                                      backgroundColor: Colors.white,
+                                      child: Icon(
+                                        Icons.person,
+                                        color: Colors.black,
+                                        size: 28,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 40,
-                                  width: 45,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Container(
-                                        width: 18,
-                                        height: 18,
-                                        decoration: const BoxDecoration(
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Color(0x290e1f35),
-                                              offset: Offset(0, 4),
-                                              blurRadius: 8,
-                                              spreadRadius: 0,
-                                            ),
-                                          ],
-                                          shape: BoxShape.circle,
-                                          color: Color(0xff31d641),
+                                  SizedBox(
+                                    height: 40,
+                                    width: 45,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Container(
+                                          width: 18,
+                                          height: 18,
+                                          decoration: const BoxDecoration(
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Color(0x290e1f35),
+                                                offset: Offset(0, 4),
+                                                blurRadius: 8,
+                                                spreadRadius: 0,
+                                              ),
+                                            ],
+                                            shape: BoxShape.circle,
+                                            color: Color(0xff31d641),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -220,30 +240,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
                       SizedBox(
                         height: 230.h,
                         width: width,
-                        child: Column(
-                          children: [
-                            getCommunity(
-                              txt1: 'The Surfer',
-                              txt2: 'The Photographers',
-                              color1: const Color(0xFFEB682A),
-                              color2: const Color(0xFFEA3948),
-                            ),
-                            SizedBox(height: 30.h),
-                            getCommunity(
-                              txt1: 'Second Hand & Vintage',
-                              txt2: 'Football',
-                              color1: const Color(0xFFD89F07),
-                              color2: const Color(0xFFBF6D84),
-                            ),
-                            SizedBox(height: 30.h),
-                            getCommunity(
-                              txt1: 'Yoga',
-                              txt2: 'Puppy',
-                              color1: const Color(0xFF62BAB6),
-                              color2: const Color(0xFFA9C80C),
-                            ),
-                          ],
-                        ),
+                        child: getCommunity(line1, line2),
                       ),
                       SizedBox(height: 100.h),
                       Container(
@@ -276,79 +273,178 @@ class _CommunityScreenState extends State<CommunityScreen> {
     );
   }
 
-  Widget getCommunity({
-    String? txt1,
-    txt2,
-    Color? color1,
-    Color? color2,
-  }) {
+  Widget getCommunity(int index1, int index2) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(
-          height: 56.h,
+        SizedBox(
+          height: 230.h,
           width: 120.w,
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
-          decoration: BoxDecoration(
-            color: color1,
-            borderRadius: const BorderRadius.only(
-              topRight: Radius.circular(30),
-              bottomRight: Radius.circular(30),
-            ),
-          ),
-          child: Center(
-            child: Text(
-              '$txt1',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 13.sp,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+          child: ListView.builder(
+            itemCount: index1,
+            shrinkWrap: true,
+            itemBuilder: (_, index) {
+              return GestureDetector(
+                onLongPress: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: const Center(child: Text('Alert!')),
+                        content: const Text(
+                            'Are you sure you want to delete this community from your list?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                if (communities
+                                    .contains(communityList[index].id)) {
+                                  communities.remove(communityList[index].id);
+                                  print('removed baby');
+                                } else {
+                                  print('not removed');
+                                }
+                              });
+                              Navigator.of(context).pop();
+                              print(communities);
+                              print(communities.length);
+                            },
+                            child: const Text('Delete'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 20.h),
+                  child: Container(
+                    height: 56.h,
+                    width: 120.w,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
+                    decoration: BoxDecoration(
+                      color: selectedCommunt[index].color,
+                      borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(30),
+                        bottomRight: Radius.circular(30),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        selectedCommunt[index].cityName,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
         ),
         const Spacer(),
-        Stack(
-          children: [
-            Container(
-              height: 56.h,
-              width: 120.w,
-              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 1),
-              decoration: BoxDecoration(
-                color: color2,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  bottomLeft: Radius.circular(30),
-                ),
-              ),
-              child: Center(
-                child: Text(
-                  '$txt2',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w500,
+        SizedBox(
+          height: 230.h,
+          width: 120.w,
+          child: ListView.builder(
+            itemCount: index2,
+            shrinkWrap: true,
+            itemBuilder: (_, index) {
+              var add = index + index1;
+              return GestureDetector(
+                onLongPress: () {
+                  showDialog(
+                    context: context,
+                    builder: (_) {
+                      return AlertDialog(
+                        title: const Center(child: Text('Alert!')),
+                        content: const Text(
+                            'Are you sure you want to delete this community from your list?'),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                if (communities
+                                    .contains(communityList[index].id)) {
+                                  communities.remove(communityList[index].id);
+                                  debugPrint('removed baby');
+                                } else {
+                                  debugPrint('not removed');
+                                }
+                              });
+                              Navigator.of(context).pop();
+                              debugPrint('$communities');
+                              print(communities.length);
+                              print(communityList[index].id);
+                            },
+                            child: const Text('Delete'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(bottom: 20.h),
+                  child: Stack(
+                    children: [
+                      Container(
+                        height: 56.h,
+                        width: 120.w,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 1),
+                        decoration: BoxDecoration(
+                          color: selectedCommunt[add].color,
+                          borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(30),
+                            bottomLeft: Radius.circular(30),
+                          ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            selectedCommunt[add].cityName,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 13.sp,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        width: 17,
+                        height: 17,
+                        decoration: const BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x290e1f35),
+                              offset: Offset(0, 4),
+                              blurRadius: 8,
+                              spreadRadius: 0,
+                            ),
+                          ],
+                          shape: BoxShape.circle,
+                          color: Color(0xfff60000),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ),
-            ),
-            Container(
-              width: 17,
-              height: 17,
-              decoration: const BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Color(0x290e1f35),
-                    offset: Offset(0, 4),
-                    blurRadius: 8,
-                    spreadRadius: 0,
-                  ),
-                ],
-                shape: BoxShape.circle,
-                color: Color(0xfff60000),
-              ),
-            ),
-          ],
+              );
+            },
+          ),
         ),
       ],
     );

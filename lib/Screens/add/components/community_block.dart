@@ -9,8 +9,13 @@ class CommunityBlock extends StatefulWidget {
   final String image;
   final String city;
   final String subCity;
+  final bool selected;
   const CommunityBlock({
-    Key? key, required this.image, required this.city, required this.subCity,
+    Key? key,
+    required this.selected,
+    required this.image,
+    required this.city,
+    required this.subCity,
   }) : super(key: key);
 
   @override
@@ -18,53 +23,64 @@ class CommunityBlock extends StatefulWidget {
 }
 
 class _CommunityBlockState extends State<CommunityBlock> {
-  bool selected = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
-      child: InkWell(
-        onTap: (){
-          setState(() {
-            selected =! selected;
-          });
-        },
-        child: Stack(
-          children: [
-            Container(
-              height: 130,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                // ignore: prefer_const_constructors
-                image: DecorationImage(image: AssetImage(widget.image), fit: BoxFit.cover)
+      child: Stack(
+        children: [
+          Container(
+            height: 130,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                image: AssetImage(widget.image),
+                fit: BoxFit.cover,
               ),
             ),
-            Positioned(
+          ),
+          Positioned(
               top: 20,
               left: 20,
               child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding:  EdgeInsets.all(selected == true ? 4 : 8),
-                  decoration: BoxDecoration(
-                    color:   selected == true ? AppColors.kprimary : Colors.transparent,
-                    border: Border.all(
-                      color:  selected == true ?AppColors.kprimary : AppColors.kwhite,
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(30)
-                  ),                      
-                  child:  selected == true ? Icon(Icons.check, color: AppColors.kblack, size: 10,) : Container(),
-                ),
-                kSmallVerticalSpacing,
-                Text(widget.city, style: bodyNormalText(context).copyWith(color: AppColors.kwhite),),
-                Text(widget.subCity, style: bodyTinyText(context).copyWith(color: AppColors.kwhite,fontSize: 10),),
-              ],
-            ))
-          ],
-        ),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(widget.selected == true ? 4 : 8),
+                    decoration: BoxDecoration(
+                        color: widget.selected == true
+                            ? AppColors.kprimary
+                            : Colors.transparent,
+                        border: Border.all(
+                          color: widget.selected == true
+                              ? AppColors.kprimary
+                              : AppColors.kwhite,
+                          width: 2.0,
+                        ),
+                        borderRadius: BorderRadius.circular(30)),
+                    child: widget.selected == true
+                        ? Icon(
+                            Icons.check,
+                            color: AppColors.kblack,
+                            size: 10,
+                          )
+                        : Container(),
+                  ),
+                  kSmallVerticalSpacing,
+                  Text(
+                    widget.city,
+                    style: bodyNormalText(context)
+                        .copyWith(color: AppColors.kwhite),
+                  ),
+                  Text(
+                    widget.subCity,
+                    style: bodyTinyText(context)
+                        .copyWith(color: AppColors.kwhite, fontSize: 10),
+                  ),
+                ],
+              ))
+        ],
       ),
     );
   }

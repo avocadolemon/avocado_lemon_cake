@@ -120,7 +120,7 @@ class _GroupScreenState extends State<GroupScreen> {
           color: AppColors.ksgrey.withOpacity(0.7),
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Container(
+        child: SizedBox(
           height: 50,
           child: Row(
             children: [
@@ -165,8 +165,8 @@ class _GroupScreenState extends State<GroupScreen> {
     );
   }
 
-  Container buildSlider(Size size) {
-    return Container(
+  Widget buildSlider(Size size) {
+    return SizedBox(
       height: 250,
       child: PageView.builder(
           controller: PageController(
@@ -191,8 +191,8 @@ class _GroupScreenState extends State<GroupScreen> {
     );
   }
 
-  Container buildSliderTwo(Size size) {
-    return Container(
+  Widget buildSliderTwo(Size size) {
+    return SizedBox(
       height: 250,
       child: PageView.builder(
           controller: PageController(

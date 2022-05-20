@@ -3,7 +3,8 @@ import 'package:avocado_lemon_cake/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  final Widget nextScreen;
+  const SplashScreen({Key? key, required this.nextScreen}) : super(key: key);
 
   @override
   _SplashScreenState createState() => _SplashScreenState();
@@ -17,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _goNext() {
-    Navigator.pushReplacementNamed(context, '/onboarding');
+    Navigator.pushReplacement(context, MaterialPageRoute(builder: (ctx) => widget.nextScreen));
   }
 
   @override
