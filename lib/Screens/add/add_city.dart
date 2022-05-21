@@ -18,7 +18,7 @@ class AddCity extends StatefulWidget {
 
 class _AddCityState extends State<AddCity> {
   late int _selected = 0;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,8 +55,8 @@ class _AddCityState extends State<AddCity> {
                 ),
                 title: Text(
                   "Search for your city",
-                  style:
-                      bodyNormalText(context).copyWith(color: AppColors.kwhite),
+                  style: bodyNormalText(context)
+                      .copyWith(color: AppColors.kwhite),
                 ),
               ),
             ),

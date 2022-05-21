@@ -36,9 +36,11 @@ class _AddCommunityState extends State<AddCommunity> {
               child: ButtonWidget(
                 btnName: 'Continue',
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (_) => CommunityScreen(communities: communit),
-                  ));
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) => CommunityScreen(communities: communit),
+                    ),
+                  );
                 },
                 enabtn: true,
                 startLoad: false,
