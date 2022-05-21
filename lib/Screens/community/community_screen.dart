@@ -69,7 +69,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
         setState(() {
           if (_currentIndex + 1 == communities.length) {
             _timer!.cancel();
-            Navigator.pushNamed(context, '/register');
+            // Navigator.pushNamed(context, '/register');
           } else {
             _currentIndex = _currentIndex + 1;
           }
@@ -90,184 +90,188 @@ class _CommunityScreenState extends State<CommunityScreen> {
     final double width = MediaQuery.of(context).size.width;
     int line1 = selectedCommunt.length > 3 ? 3 : selectedCommunt.length;
     int line2 = selectedCommunt.length > 3 ? selectedCommunt.length - 3 : 0;
-    print('$communities scom');
 
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            AnimatedSwitcher(
-              duration: const Duration(milliseconds: 500),
-              transitionBuilder: (Widget child, Animation<double> animation) {
-                return FadeTransition(child: child, opacity: animation);
-              },
-              child: backgroudImage(imgList[_currentIndex]),
-            ),
-            SafeArea(
-              child: Container(
-                width: width,
-                height: height,
-                decoration: const BoxDecoration(color: Color(0x99000000)),
-                child: FittedBox(
-                  fit: BoxFit.fill,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height: 5.h),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
-                        child: GestureDetector(
-                          onTap: () =>
-                              Navigator.pushNamed(context, '/add-community'),
-                          child: Row(
-                            children: List.generate(
-                              3,
-                              (index) {
-                                return AnimatedContainer(
-                                  duration: const Duration(milliseconds: 150),
-                                  margin:
-                                      const EdgeInsets.symmetric(horizontal: 2),
-                                  height: index == 1 ? 15 : 12,
-                                  width: index == 1 ? 15 : 12,
-                                  decoration: BoxDecoration(
-                                    color: colors[index],
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(12),
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          SizedBox(
-                            height: 133.h,
-                            width: width,
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 16.0, right: 10),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    selectedCommunt[_currentIndex].cityName,
-                                    style: TextStyle(
-                                      color: const Color(0xffffffff),
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: "OpenSans",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 35.0.sp,
-                                    ),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                  Text(
-                                    selectedCommunt[_currentIndex].citySubName,
-                                    style: TextStyle(
-                                      color: const Color(0xffffffff),
-                                      fontWeight: FontWeight.w300,
-                                      fontFamily: "OpenSans",
-                                      fontStyle: FontStyle.normal,
-                                      fontSize: 14.0.sp,
-                                    ),
-                                    maxLines: 2,
-                                    textAlign: TextAlign.left,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 120.h),
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 10.0),
-                            child: GestureDetector(
-                              onTap: () => Navigator.of(context)
-                                  .pushNamed('/ProfileManagement'),
-                              child: Stack(
-                                children: [
-                                  const SizedBox(
-                                    height: 70,
-                                    width: 45,
-                                    child: CircleAvatar(
-                                      backgroundColor: Colors.white,
-                                      child: Icon(
-                                        Icons.person,
-                                        color: Colors.black,
-                                        size: 28,
+      body: WillPopScope(
+        onWillPop: () async => false,
+        child: SafeArea(
+          child: Stack(
+            children: [
+              AnimatedSwitcher(
+                duration: const Duration(milliseconds: 500),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return FadeTransition(child: child, opacity: animation);
+                },
+                child: backgroudImage(imgList[_currentIndex]),
+              ),
+              SafeArea(
+                child: Container(
+                  width: width,
+                  height: height,
+                  decoration: const BoxDecoration(color: Color(0x99000000)),
+                  child: FittedBox(
+                    fit: BoxFit.fill,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 5.h),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 10, 0, 0),
+                          child: GestureDetector(
+                            onTap: () =>
+                                Navigator.pushNamed(context, '/add-community'),
+                            child: Row(
+                              children: List.generate(
+                                3,
+                                (index) {
+                                  return AnimatedContainer(
+                                    duration: const Duration(milliseconds: 150),
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 2),
+                                    height: index == 1 ? 15 : 12,
+                                    width: index == 1 ? 15 : 12,
+                                    decoration: BoxDecoration(
+                                      color: colors[index],
+                                      borderRadius: const BorderRadius.all(
+                                        Radius.circular(12),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(
-                                    height: 40,
-                                    width: 45,
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Container(
-                                          width: 18,
-                                          height: 18,
-                                          decoration: const BoxDecoration(
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Color(0x290e1f35),
-                                                offset: Offset(0, 4),
-                                                blurRadius: 8,
-                                                spreadRadius: 0,
-                                              ),
-                                            ],
-                                            shape: BoxShape.circle,
-                                            color: Color(0xff31d641),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
+                                  );
+                                },
                               ),
                             ),
                           ),
-                        ],
-                      ),
-                      SizedBox(height: 42.h),
-                      SizedBox(
-                        height: 230.h,
-                        width: width,
-                        child: getCommunity(line1, line2),
-                      ),
-                      SizedBox(height: 100.h),
-                      Container(
-                        height: 120.h,
-                        width: width,
-                        color: Colors.transparent,
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              thirdRowWidget(),
-                              SizedBox(width: 26.w),
-                              thirdRowWidget(),
-                              SizedBox(width: 26.w),
-                              thirdRowWidget(),
-                              SizedBox(width: 26.w),
-                            ],
+                        ),
+                        SizedBox(height: 20.h),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            SizedBox(
+                              height: 133.h,
+                              width: width,
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 16.0, right: 10),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      selectedCommunt[_currentIndex].cityName,
+                                      style: TextStyle(
+                                        color: const Color(0xffffffff),
+                                        fontWeight: FontWeight.w700,
+                                        fontFamily: "OpenSans",
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 35.0.sp,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    Text(
+                                      selectedCommunt[_currentIndex]
+                                          .citySubName,
+                                      style: TextStyle(
+                                        color: const Color(0xffffffff),
+                                        fontWeight: FontWeight.w300,
+                                        fontFamily: "OpenSans",
+                                        fontStyle: FontStyle.normal,
+                                        fontSize: 14.0.sp,
+                                      ),
+                                      maxLines: 2,
+                                      textAlign: TextAlign.left,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 120.h),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10.0),
+                              child: GestureDetector(
+                                onTap: () => Navigator.of(context)
+                                    .pushNamed('/ProfileManagement'),
+                                child: Stack(
+                                  children: [
+                                    const SizedBox(
+                                      height: 70,
+                                      width: 45,
+                                      child: CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        child: Icon(
+                                          Icons.person,
+                                          color: Colors.black,
+                                          size: 28,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 40,
+                                      width: 45,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Container(
+                                            width: 18,
+                                            height: 18,
+                                            decoration: const BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Color(0x290e1f35),
+                                                  offset: Offset(0, 4),
+                                                  blurRadius: 8,
+                                                  spreadRadius: 0,
+                                                ),
+                                              ],
+                                              shape: BoxShape.circle,
+                                              color: Color(0xff31d641),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 42.h),
+                        SizedBox(
+                          height: 230.h,
+                          width: width,
+                          child: getCommunity(line1, line2),
+                        ),
+                        SizedBox(height: 100.h),
+                        Container(
+                          height: 120.h,
+                          width: width,
+                          color: Colors.transparent,
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                thirdRowWidget(),
+                                SizedBox(width: 26.w),
+                                thirdRowWidget(),
+                                SizedBox(width: 26.w),
+                                thirdRowWidget(),
+                                SizedBox(width: 26.w),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(height: 40.h),
-                    ],
+                        SizedBox(height: 40.h),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -305,11 +309,23 @@ class _CommunityScreenState extends State<CommunityScreen> {
                                     .contains(communityList[index].id)) {
                                   communities.remove(communityList[index].id);
                                   print('removed baby');
+                                  print('$communities');
+                                  print('${communityList[index].id}');
+                                  Navigator.of(context).pop();
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (_) => CommunityScreen(
+                                          communities: communities),
+                                    ),
+                                  );
                                 } else {
+                                  print('not removed 22');
+                                  print('$communities');
+                                  print('${communityList[index].id}');
                                   print('not removed');
                                 }
                               });
-                              Navigator.of(context).pop();
+                              // Navigator.of(context).pop();
                               print(communities);
                               print(communities.length);
                             },

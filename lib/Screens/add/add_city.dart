@@ -55,8 +55,8 @@ class _AddCityState extends State<AddCity> {
                 ),
                 title: Text(
                   "Search for your city",
-                  style:
-                      bodyNormalText(context).copyWith(color: AppColors.kwhite),
+                  style: bodyNormalText(context)
+                      .copyWith(color: AppColors.kwhite),
                 ),
               ),
             ),
