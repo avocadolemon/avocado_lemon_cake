@@ -16,8 +16,7 @@ class OnboardingContent extends StatefulWidget {
       required this.image,
       required this.heading,
       required this.paragraph,
-      this.height = 200.0
-      })
+      this.height = 200.0})
       : super(key: key);
 
   @override
@@ -44,20 +43,26 @@ class _OnboardingContentState extends State<OnboardingContent> {
               flex: 1,
             ),
             Container(
-              child: Text(widget.heading,
-                  style: heading1(context)
-                      .copyWith(color: AppColors.kwhite, fontSize: 20.sp)),
+              child: Text(
+                widget.heading,
+                style: heading1(context)
+                    .copyWith(color: AppColors.kwhite, fontSize: 20.sp),
+              ),
             ),
             SizedBox(height: 22),
             Container(
-                padding: EdgeInsets.symmetric(horizontal: 50),
-                child: Text(widget.paragraph,
-                    textAlign: TextAlign.center,
-                    style: bodyNormalText(context)
-                        .copyWith(color: AppColors.kwhite.withOpacity(0.7)))),
-                        Spacer(
-                          flex: 2,
-                        ),
+              padding: EdgeInsets.symmetric(horizontal: 50),
+              child: Text(
+                widget.paragraph,
+                textAlign: TextAlign.center,
+                style: bodyNormalText(context).copyWith(
+                  color: AppColors.kwhite.withOpacity(0.7),
+                ),
+              ),
+            ),
+            Spacer(
+              flex: 2,
+            ),
           ],
         ),
       ),

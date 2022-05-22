@@ -1,8 +1,8 @@
-import 'package:avocado_lemon_cake/Screens/profile_management/components/drawer_menu.dart';
 import 'package:avocado_lemon_cake/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'components/drawer_menu.dart';
 import 'components/profile_slider.dart';
 
 class ProfileManagement extends StatefulWidget {

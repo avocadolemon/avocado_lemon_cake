@@ -25,7 +25,7 @@ class ButtonWidget extends StatelessWidget {
         elevation: 0,
         child: startLoad
             ? const CircularProgressIndicator(
-                color: AppColors.kprimary, strokeWidth: 2.8)
+                color: AppColors.kblack, strokeWidth: 2.8)
             : Text(
                 btnName,
                 style: TextStyle(

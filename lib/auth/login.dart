@@ -20,6 +20,15 @@ class _LoginScreenState extends State<LoginScreen> {
   bool hideText = true, enabtn = true, _loadBtn = false;
   final AuthRepository _authRepository = AuthRepository();
 
+  _signInUser() async {
+    // setState(() {
+    //   _loadBtn = true;
+    // });
+    if (_formKey.currentState!.validate()) {
+      await _authRepository.signInWithEmail(_email!.text, _pass!.text, context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,15 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 70.h),
                 ButtonWidget(
-                  btnName: 'LOGIN',
-                  enabtn: enabtn,
-                  startLoad: _loadBtn,
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      _authRepository.signInWithEmail(_email!.text, _pass!.text, context);
-                    }
-                  },
-                ),
+                    btnName: 'LOGIN',
+                    enabtn: enabtn,
+                    startLoad: _loadBtn,
+                    onPressed: _signInUser),
                 SizedBox(height: 32.h),
                 Text.rich(
                   TextSpan(
@@ -162,7 +166,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     SizedBox(width: 30.w),
-                    SvgPicture.asset('assets/svgs/google.svg'),
+                    GestureDetector(
+                        onTap: () {
+                          _authRepository.signInWithGmail(context);
+                        },
+                        child: SvgPicture.asset('assets/svgs/google.svg')),
                     SvgPicture.asset('assets/svgs/facebook.svg'),
                     SvgPicture.asset('assets/svgs/apple.svg'),
                     SizedBox(width: 30.w),

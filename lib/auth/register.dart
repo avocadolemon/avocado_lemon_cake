@@ -21,7 +21,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool hideText = true, enabtn = true, _loadBtn = false;
   int? selectedIndex;
   String? _selectedValue;
-  String _sex = '';
+  final String _sex = '';
   List<String> itemName = ['female', 'male'];
   final AuthRepository _authRepository = AuthRepository();
 
@@ -146,13 +146,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   startLoad: _loadBtn,
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      await Future.value(_authRepository.createWithEmailAndPwd(
-                          _email!.text,
-                          _pass!.text,
-                          context,
-                          _name!.text,
-                          _age!.text,
-                          _selectedValue!));
+                      await Future.value(
+                        _authRepository.createWithEmailAndPwd(
+                            _email!.text,
+                            _pass!.text,
+                            context,
+                            _name!.text,
+                            _age!.text,
+                            _selectedValue!),
+                      );
                     }
                   },
                 ),
@@ -188,7 +190,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     SizedBox(width: 30.w),
-                    SvgPicture.asset('assets/svgs/google.svg'),
+                    GestureDetector(
+                      onTap: () {
+                        _authRepository.signInWithGmail(context);
+                      },
+                      child: SvgPicture.asset('assets/svgs/google.svg'),
+                    ),
                     SvgPicture.asset('assets/svgs/facebook.svg'),
                     SvgPicture.asset('assets/svgs/apple.svg'),
                     SizedBox(width: 30.w),
@@ -205,7 +212,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
-                        Navigator.of(context).pushNamed('/register');
+                        Navigator.of(context).pushNamed('/login');
                       },
                     children: [
                       TextSpan(
@@ -215,7 +222,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.of(context).pushNamed('/register');
+                            Navigator.of(context).pushNamed('/login');
                           },
                       )
                     ],
