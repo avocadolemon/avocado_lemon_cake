@@ -30,11 +30,14 @@ class _AddCommunityState extends State<AddCommunity> {
       appBar: buildAPpBar(context),
       bottomNavigationBar: communit.isNotEmpty
           ? Container(
-              height: 100,
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-              color: Colors.transparent,
-              child: ButtonWidget(
-                btnName: 'Continue',
+              height: 55,
+              margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: AppColors.kprimary,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TextButton(
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
@@ -42,10 +45,26 @@ class _AddCommunityState extends State<AddCommunity> {
                     ),
                   );
                 },
-                enabtn: true,
-                startLoad: false,
+                child: Text("Continue", style: heading1(context)),
               ),
             )
+          // ? Container(
+          //     height: 100,
+          //     padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+          //     color: Colors.transparent,
+          //     child: ButtonWidget(
+          //       btnName: 'Continue',
+          //       onPressed: () {
+          //         Navigator.of(context).push(
+          //           MaterialPageRoute(
+          //             builder: (_) => CommunityScreen(communities: communit),
+          //           ),
+          //         );
+          //       },
+          //       enabtn: true,
+          //       startLoad: false,
+          //     ),
+          //   )
           : const Center(),
       body: SizedBox(
         height: double.infinity,

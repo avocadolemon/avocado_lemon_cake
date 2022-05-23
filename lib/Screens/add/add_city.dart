@@ -26,16 +26,34 @@ class _AddCityState extends State<AddCity> {
       appBar: buildAPpBar(context),
       bottomNavigationBar: _selected != 0
           ? Container(
-              height: 100,
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
-              color: Colors.transparent,
-              child: ButtonWidget(
-                btnName: 'Continue',
-                onPressed: () => Navigator.pushNamed(context, '/add-community'),
-                enabtn: true,
-                startLoad: false,
+              height: 55,
+              margin: EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: AppColors.kprimary,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/add-community');
+                },
+                child: Text(
+                  "Continue",
+                  style: heading1(context),
+                ),
               ),
             )
+          // ? Container(
+          //     height: 100,
+          //     padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+          //     color: Colors.transparent,
+          //     child: ButtonWidget(
+          //       btnName: 'Continue',
+          //       onPressed: () => Navigator.pushNamed(context, '/add-community'),
+          //       enabtn: true,
+          //       startLoad: false,
+          //     ),
+          //   )
           : Center(),
       body: Container(
         height: double.infinity,
@@ -55,8 +73,8 @@ class _AddCityState extends State<AddCity> {
                 ),
                 title: Text(
                   "Search for your city",
-                  style: bodyNormalText(context)
-                      .copyWith(color: AppColors.kwhite),
+                  style:
+                      bodyNormalText(context).copyWith(color: AppColors.kwhite),
                 ),
               ),
             ),

@@ -1,4 +1,10 @@
+import 'dart:developer';
+
+import 'package:avocado_lemon_cake/Screens/home/home_tab.dart';
 import 'package:avocado_lemon_cake/auth/login.dart';
+import 'package:avocado_lemon_cake/auth/onboarding/index.dart';
+import 'package:avocado_lemon_cake/auth/splash.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -44,18 +50,18 @@ class MyApp extends StatelessWidget {
                   child: widget!,
                 );
               },
-              home: const LoginScreen(),
+              // home: const LoginScreen(),
               // initialRoute: '/splash',
-              // home: StreamBuilder(
-              //     stream: FirebaseAuth.instance.authStateChanges(),
-              //     builder: (context, snapshot) {
-              //       log('snapshot data: ${snapshot.data}');
-              //       if (snapshot.hasData) {
-              //         return const SplashScreen(nextScreen: HomeTab());
-              //       } else {
-              //         return const SplashScreen(nextScreen: OnBoardingScreen());
-              //       }
-              //     }),
+              home: StreamBuilder(
+                  stream: FirebaseAuth.instance.authStateChanges(),
+                  builder: (context, snapshot) {
+                    log('snapshot data: ${snapshot.data}');
+                    if (!snapshot.hasData) {
+                      return const SplashScreen(nextScreen: HomeTab());
+                    } else {
+                      return const SplashScreen(nextScreen: OnBoardingScreen());
+                    }
+                  }),
             );
           },
         );

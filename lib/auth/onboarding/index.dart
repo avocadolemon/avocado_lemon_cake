@@ -117,8 +117,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       width: double.infinity,
                       height: 50,
                       decoration: BoxDecoration(
-                          color: AppColors.kprimary,
-                          borderRadius: BorderRadius.circular(10)),
+                        color: AppColors.kprimary,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
                       child: TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, '/add-city');

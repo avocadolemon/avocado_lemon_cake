@@ -5,6 +5,7 @@ import 'package:avocado_lemon_cake/Screens/home/edit_group.dart';
 import 'package:avocado_lemon_cake/Screens/home/groups_screen.dart';
 import 'package:avocado_lemon_cake/Screens/home/home_tab.dart';
 import 'package:avocado_lemon_cake/auth/onboarding/index.dart';
+import 'package:avocado_lemon_cake/auth/splash.dart';
 import 'package:flutter/material.dart';
 import '../Screens/add/add_city.dart';
 import '../Screens/add/add_community.dart';
@@ -30,7 +31,7 @@ class AppRoutes {
     '/check-mail': (context) => const CheckMail(),
     '/create-pass': (context) => const CreateNewPassword(),
     '/pass-success': (context) => const PasswordResetSuccess(),
-    // '/splash': (context) => const SplashScreen(),
+    // '/splash': (context) =>  SplashScreen(),
     '/onboarding': (context) => const OnBoardingScreen(),
     '/add-city': (context) => const AddCity(),
     // '/community-screen': (context) => CommunityScreen(),
