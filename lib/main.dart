@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
                   stream: FirebaseAuth.instance.authStateChanges(),
                   builder: (context, snapshot) {
                     log('snapshot data: ${snapshot.data}');
-                    if (!snapshot.hasData) {
+                    if (snapshot.hasData) {
                       return const SplashScreen(nextScreen: HomeTab());
                     } else {
                       return const SplashScreen(nextScreen: OnBoardingScreen());

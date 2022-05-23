@@ -70,6 +70,7 @@ class _CommunityScreenState extends State<CommunityScreen> {
           if (_currentIndex + 1 == communities.length) {
             _timer!.cancel();
             // Navigator.pushNamed(context, '/register');
+            Navigator.pushReplacementNamed(context, '/homeWrapper');
           } else {
             _currentIndex = _currentIndex + 1;
           }
