@@ -1,28 +1,67 @@
+import 'dart:async';
+import 'package:avocado_lemon_cake/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  final Widget nextScreen;
+  const SplashScreen({Key? key, required this.nextScreen}) : super(key: key);
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  Timer? _timer;
+
+  _startDelay() {
+    _timer = Timer(const Duration(seconds: 10), _goNext);
+  }
+
+  _goNext() {
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (ctx) => widget.nextScreen));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _startDelay();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      backgroundColor: Colors.black,
+      body: SizedBox(
+        height: double.infinity,
+        width: double.infinity,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 130.h),
-            const Center(
-              child: Image(
-                image: AssetImage('assets/imgs/Ellipse 31.png'),
-              ),
+            const Spacer(flex: 2),
+            Container(
+              height: 300,
+              decoration: const BoxDecoration(
+                  image:
+                      DecorationImage(image: AssetImage(ImageAssets.splashBG))),
             ),
-            SizedBox(
-              height: 90.h,
+            const Spacer(
+              flex: 1,
             ),
-            const Center(
-              child: Image(
-                image: AssetImage('assets/imgs/ALC logo white 1.png'),
-              ),
+            Container(
+              height: 80,
+              decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(ImageAssets.splashLogo))),
+            ),
+            const Spacer(
+              flex: 2,
             ),
           ],
         ),

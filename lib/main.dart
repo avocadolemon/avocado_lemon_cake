@@ -1,5 +1,7 @@
 import 'dart:developer';
-
+import 'package:avocado_lemon_cake/Screens/home/home_tab.dart';
+import 'package:avocado_lemon_cake/auth/onboarding/index.dart';
+import 'package:avocado_lemon_cake/auth/splash.dart';
 import 'package:avocado_lemon_cake/function/repository/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -9,7 +11,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 import 'Screens/home/home_tab.dart';
-import 'Screens/splash/splash.dart';
 import 'auth/onboarding/index.dart';
 import 'function/provider/theme_provider.dart';
 import 'routes/app_routes.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
                     child: widget!,
                   );
                 },
+                // home: const LoginScreen(),
                 // initialRoute: '/splash',
                 home: StreamBuilder(
                   stream: FirebaseAuth.instance.authStateChanges(),
