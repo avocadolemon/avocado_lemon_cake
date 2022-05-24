@@ -14,20 +14,19 @@ class ThemeProvider extends ChangeNotifier {
 
 class MyThemes {
   static final darkTheme = ThemeData(
-    bottomSheetTheme: const BottomSheetThemeData(
-      backgroundColor: Colors.white,
-      modalBackgroundColor: AppColors.kwhite,
-    ),
-    fontFamily: 'OpenSans',
-    scaffoldBackgroundColor: Colors.black,
-    colorScheme: const ColorScheme.dark(),
-    appBarTheme: const AppBarTheme(
-      elevation: 0,
-      centerTitle: true,
-      color: Color.fromARGB(255, 19, 7, 7),
-    ),
-    drawerTheme: DrawerThemeData()
-  );
+      bottomSheetTheme: const BottomSheetThemeData(
+        backgroundColor: Colors.white,
+        modalBackgroundColor: AppColors.kwhite,
+      ),
+      fontFamily: 'OpenSans',
+      scaffoldBackgroundColor: Colors.black,
+      colorScheme: const ColorScheme.dark(),
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        centerTitle: true,
+        color: Color.fromARGB(255, 19, 7, 7),
+      ),
+      drawerTheme: const DrawerThemeData());
 
   static final lightTheme = ThemeData(
     fontFamily: 'OpenSans',

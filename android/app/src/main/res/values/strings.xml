@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">com.avocado.cakeapp</string>
+    <string name="facebook_app_id">731433774557593</string>
+    <string name="fb_login_protocol_scheme">fb731433774557593</string>
+    <string name="facebook_client_token">7cfc649e718385d43e9c5788e3687724</string>
+</resources>
+

@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import '../utils/colors.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/textformfield_widget.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -168,10 +169,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(width: 30.w),
                     GestureDetector(
                         onTap: () {
-                          _authRepository.signInWithGmail(context);
+                          context
+                              .read<AuthRepository>()
+                              .signInWithGmail(context);
                         },
                         child: SvgPicture.asset('assets/svgs/google.svg')),
-                    SvgPicture.asset('assets/svgs/facebook.svg'),
+                    GestureDetector(
+                        onTap: () => context
+                            .read<AuthRepository>()
+                            .signInWithFacebook(context),
+                        child: SvgPicture.asset('assets/svgs/facebook.svg')),
                     SvgPicture.asset('assets/svgs/apple.svg'),
                     SizedBox(width: 30.w),
                   ],

@@ -3,10 +3,11 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:simple_connection_checker/simple_connection_checker.dart';
 
-class AuthRepository {
+class AuthRepository with ChangeNotifier {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -32,7 +33,6 @@ class AuthRepository {
           "age": age,
           "sex": sex,
           "email": userSignUpEmail,
-          "password": userSignUpPassword,
           "registrationTime": DateTime.now(),
         }).then((value) {
           Navigator.pushReplacementNamed(context, '/homeWrapper');
@@ -45,6 +45,7 @@ class AuthRepository {
       log(e.toString());
       showSnackBar(context, "Oops! An error occured.. 😞");
     }
+    notifyListeners();
   }
 
   // Verification method
@@ -55,6 +56,7 @@ class AuthRepository {
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
+    notifyListeners();
   }
 
   //Sign In method
@@ -78,6 +80,7 @@ class AuthRepository {
       showSnackBar(context,
           "We cannot find an account with this email and password. Please check your details 😞");
     }
+    notifyListeners();
   }
 
 //Google signin method
@@ -90,23 +93,49 @@ class AuthRepository {
       // Create a niw credential
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
-      await _auth.signInWithCredential(credential).then((value) async {
+      UserCredential userCredential =
+          await _auth.signInWithCredential(credential).then((value) async {
         Navigator.pushReplacementNamed(context, '/homeWrapper');
+
+        _db.collection('');
         showSnackBar(context, "Yay! Signed up Successfully 🤩");
         return value;
       });
     }
+    notifyListeners();
   }
 
-  Future<void> signInWithFacebook() async {}
+//Facebook signing in
+  Future<void> signInWithFacebook(BuildContext context) async {
+    try {
+      final LoginResult loginResult = await FacebookAuth.instance.login();
+
+      final OAuthCredential faceBookAuthCredential =
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
+      await _auth
+          .signInWithCredential(faceBookAuthCredential)
+          .then((value) async {
+        Navigator.pushReplacementNamed(context, '/homeWrapper');
+        showSnackBar(context, "Yay! Signed up Successfully 🤩");
+        return value;
+      });
+    } on FirebaseAuthException catch (e) {
+      showSnackBar(context, e.message!);
+    }
+    notifyListeners();
+  }
+
   Future<void> signInWithApple() async {}
 
   //Sign out method
-  Future<void> signOut(BuildContext context) {
-    return FirebaseAuth.instance.signOut().then((value) {
-      Navigator.pushReplacementNamed(context, '/login');
-      showSnackBar(context, "Signed out");
-    });
+  Future<void> signOut(BuildContext context) async {
+    FirebaseAuth.instance.signOut().then(
+      (value) {
+        Navigator.pushReplacementNamed(context, '/login');
+        showSnackBar(context, "Signed out");
+      },
+    );
+    notifyListeners();
   }
 
   void showSnackBar(BuildContext context, String text) {

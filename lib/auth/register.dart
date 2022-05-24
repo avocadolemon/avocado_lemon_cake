@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import '../utils/colors.dart';
 import '../widgets/button_widget.dart';
 import '../widgets/dropdown_widget.dart';
@@ -191,12 +192,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     SizedBox(width: 30.w),
                     GestureDetector(
-                      onTap: () {
-                        _authRepository.signInWithGmail(context);
-                      },
+                      onTap: () => context
+                          .read<AuthRepository>()
+                          .signInWithGmail(context),
                       child: SvgPicture.asset('assets/svgs/google.svg'),
                     ),
-                    SvgPicture.asset('assets/svgs/facebook.svg'),
+                    GestureDetector(
+                        onTap: () => context
+                            .read<AuthRepository>()
+                            .signInWithFacebook(context),
+                        child: SvgPicture.asset('assets/svgs/facebook.svg')),
                     SvgPicture.asset('assets/svgs/apple.svg'),
                     SizedBox(width: 30.w),
                   ],

@@ -1,6 +1,8 @@
+import 'package:avocado_lemon_cake/function/repository/auth_repository.dart';
 import 'package:avocado_lemon_cake/widgets/theme_swtich.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
 class DrawerMdenu extends StatelessWidget {
   const DrawerMdenu({Key? key}) : super(key: key);
@@ -101,12 +103,13 @@ class DrawerMdenu extends StatelessWidget {
             title: Text('Support & Bugs'),
             leading: Icon(Icons.phone),
           ),
-          const ListTile(
-            title: Text(
+          ListTile(
+            onTap: () => context.read<AuthRepository>().signOut(context),
+            title: const Text(
               'Sign Out',
               style: TextStyle(color: Colors.red),
             ),
-            leading: Icon(
+            leading: const Icon(
               Icons.door_front_door,
               color: Colors.red,
             ),
