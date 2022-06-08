@@ -1,6 +1,7 @@
 import 'package:avocado_lemon_cake/Screens/home/groups_screen.dart';
 import 'package:avocado_lemon_cake/Screens/home/profile_screen.dart';
 import 'package:avocado_lemon_cake/Screens/home/topics_screen.dart';
+import 'package:avocado_lemon_cake/function/repository/auth_repository.dart';
 import 'package:avocado_lemon_cake/utils/app_textstyle.dart';
 import 'package:avocado_lemon_cake/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
+  final AuthRepository _authRepository = AuthRepository();
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -85,8 +87,11 @@ class _HomeTabState extends State<HomeTab> {
             ),
             leading: Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: Container(
-                  // padding: const EdgeInsets.all(2),
+              child: GestureDetector(
+                onTap: () async {
+                  await _authRepository.signOut(context);
+                },
+                child: Container(
                   decoration: const BoxDecoration(
                     color: AppColors.ksgrey,
                     shape: BoxShape.circle,
@@ -95,30 +100,28 @@ class _HomeTabState extends State<HomeTab> {
                     Icons.home_filled,
                     color: AppColors.kwhite,
                     size: 16,
-                  )
-                  // child: ,
                   ),
+                ),
+              ),
             ),
             actions: [
               Padding(
                 padding: const EdgeInsets.only(right: kPad),
                 child: Row(
                   children: [
-                    Container(
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.arrow_back_ios,
-                            size: 14,
-                            color: AppColors.kwhite,
-                          ),
-                          Text(
-                            "musi".toUpperCase(),
-                            style: bodyNormalText(context)
-                                .copyWith(color: AppColors.kwhite),
-                          )
-                        ],
-                      ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.arrow_back_ios,
+                          size: 14,
+                          color: AppColors.kwhite,
+                        ),
+                        Text(
+                          "musi".toUpperCase(),
+                          style: bodyNormalText(context)
+                              .copyWith(color: AppColors.kwhite),
+                        )
+                      ],
                     ),
                     kSmallHorizontalSpacing,
                     Container(
@@ -130,12 +133,6 @@ class _HomeTabState extends State<HomeTab> {
                       ),
                       child: Row(
                         children: [
-                          // const Icon(
-                          //   Icons.keyboard_arrow_down_sharp,
-                          //   size: 16,
-                          //   color: AppColors.kwhite,
-                          // ),
-                          // kTinyHorizontalSpacing,
                           Text(
                             "Travel with Kids",
                             style: bodyNormalText(context).copyWith(

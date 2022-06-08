@@ -41,9 +41,9 @@ class AuthRepository with ChangeNotifier {
       } else {
         showSnackBar(context, "Oops! No network connection");
       }
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
       log(e.toString());
-      showSnackBar(context, "Oops! An error occured.. 😞");
+      showSnackBar(context, "${e.message} 😞");
     }
     notifyListeners();
   }
@@ -64,8 +64,9 @@ class AuthRepository with ChangeNotifier {
       String email, String password, BuildContext context) async {
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     try {
-      if (isConnected == true && !_auth.currentUser!.emailVerified) {
-        await sendEmailVerification(context);
+      if (isConnected == true) {
+        //  && !_auth.currentUser!.emailVerified
+        // await sendEmailVerification(context);
         await _auth
             .signInWithEmailAndPassword(email: email, password: password)
             .then((value) async {
@@ -75,10 +76,9 @@ class AuthRepository with ChangeNotifier {
       } else {
         showSnackBar(context, "Oops! No network connection");
       }
-    } catch (e) {
+    } on FirebaseAuthException catch (e) {
       log(e.toString());
-      showSnackBar(context,
-          "We cannot find an account with this email and password. Please check your details 😞");
+      showSnackBar(context, "${e.message} 😞");
     }
     notifyListeners();
   }
@@ -93,11 +93,19 @@ class AuthRepository with ChangeNotifier {
       // Create a niw credential
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
-      UserCredential userCredential =
-          await _auth.signInWithCredential(credential).then((value) async {
-        Navigator.pushReplacementNamed(context, '/homeWrapper');
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+      final User? user = userCredential.user;
 
-        _db.collection('');
+      await _db.collection("UserData").doc(user!.uid).set({
+        "userId": userCredential.user!.uid,
+        "name": user.displayName,
+        "age": "age",
+        "sex": "sex",
+        "email": user.email,
+        "registrationTime": DateTime.now(),
+      }).then((value) {
+        Navigator.pushReplacementNamed(context, '/homeWrapper');
         showSnackBar(context, "Yay! Signed up Successfully 🤩");
         return value;
       });
@@ -112,9 +120,19 @@ class AuthRepository with ChangeNotifier {
 
       final OAuthCredential faceBookAuthCredential =
           FacebookAuthProvider.credential(loginResult.accessToken!.token);
-      await _auth
-          .signInWithCredential(faceBookAuthCredential)
-          .then((value) async {
+
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(faceBookAuthCredential);
+      final User? user = userCredential.user;
+
+      await _db.collection("UserData").doc(user!.uid).set({
+        "userId": userCredential.user!.uid,
+        "name": user.displayName,
+        "age": "age",
+        "sex": "sex",
+        "email": user.email,
+        "registrationTime": DateTime.now(),
+      }).then((value) {
         Navigator.pushReplacementNamed(context, '/homeWrapper');
         showSnackBar(context, "Yay! Signed up Successfully 🤩");
         return value;

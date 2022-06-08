@@ -26,6 +26,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
   List<String> itemName = ['female', 'male'];
   final AuthRepository _authRepository = AuthRepository();
 
+  _signUpUser() async {
+    setState(() {
+      _loadBtn = true;
+    });
+    if (_formKey.currentState!.validate()) {
+      await _authRepository
+          .createWithEmailAndPwd(_email!.text, _pass!.text, context,
+              _name!.text, _age!.text, _selectedValue!)
+          .then(
+            (value) => setState(() => _loadBtn = false),
+          );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -145,19 +159,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   btnName: 'Sign-up',
                   enabtn: enabtn,
                   startLoad: _loadBtn,
-                  onPressed: () async {
-                    if (_formKey.currentState!.validate()) {
-                      await Future.value(
-                        _authRepository.createWithEmailAndPwd(
-                            _email!.text,
-                            _pass!.text,
-                            context,
-                            _name!.text,
-                            _age!.text,
-                            _selectedValue!),
-                      );
-                    }
-                  },
+                  onPressed: _signUpUser,
                 ),
                 SizedBox(height: 50.h),
                 Row(
@@ -192,16 +194,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   children: [
                     SizedBox(width: 30.w),
                     GestureDetector(
-                      onTap: () => context
-                          .read<AuthRepository>()
-                          .signInWithGmail(context),
+                      onTap: () async {
+                        await _authRepository.signInWithGmail(context);
+                      },
                       child: SvgPicture.asset('assets/svgs/google.svg'),
                     ),
                     GestureDetector(
-                        onTap: () => context
-                            .read<AuthRepository>()
-                            .signInWithFacebook(context),
-                        child: SvgPicture.asset('assets/svgs/facebook.svg')),
+                      onTap: () async {
+                        await _authRepository.signInWithFacebook(context);
+                      },
+                      child: SvgPicture.asset('assets/svgs/facebook.svg'),
+                    ),
                     SvgPicture.asset('assets/svgs/apple.svg'),
                     SizedBox(width: 30.w),
                   ],

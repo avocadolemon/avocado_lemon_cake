@@ -22,20 +22,22 @@ class _LoginScreenState extends State<LoginScreen> {
   final AuthRepository _authRepository = AuthRepository();
 
   _signInUser() async {
-    // setState(() {
-    //   _loadBtn = true;
-    // });
+    setState(() {
+      _loadBtn = true;
+    });
     if (_formKey.currentState!.validate()) {
-      await _authRepository.signInWithEmail(_email!.text, _pass!.text, context);
+      await _authRepository
+          .signInWithEmail(_email!.text, _pass!.text, context)
+          .then(
+            (value) => setState(() => _loadBtn = false),
+          );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Log-ind sds'),
-      ),
+      appBar: AppBar(title: const Text('Log-in')),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -104,10 +106,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 SizedBox(height: 70.h),
                 ButtonWidget(
-                    btnName: 'LOGIN',
-                    enabtn: enabtn,
-                    startLoad: _loadBtn,
-                    onPressed: _signInUser),
+                  btnName: 'LOGIN',
+                  enabtn: enabtn,
+                  startLoad: _loadBtn,
+                  onPressed: _signInUser,
+                ),
                 SizedBox(height: 32.h),
                 Text.rich(
                   TextSpan(
@@ -168,17 +171,17 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     SizedBox(width: 30.w),
                     GestureDetector(
-                        onTap: () {
-                          context
-                              .read<AuthRepository>()
-                              .signInWithGmail(context);
-                        },
-                        child: SvgPicture.asset('assets/svgs/google.svg')),
+                      onTap: () async {
+                        await _authRepository.signInWithGmail(context);
+                      },
+                      child: SvgPicture.asset('assets/svgs/google.svg'),
+                    ),
                     GestureDetector(
-                        onTap: () => context
-                            .read<AuthRepository>()
-                            .signInWithFacebook(context),
-                        child: SvgPicture.asset('assets/svgs/facebook.svg')),
+                      onTap: () async {
+                        await _authRepository.signInWithFacebook(context);
+                      },
+                      child: SvgPicture.asset('assets/svgs/facebook.svg'),
+                    ),
                     SvgPicture.asset('assets/svgs/apple.svg'),
                     SizedBox(width: 30.w),
                   ],

@@ -24,7 +24,7 @@ dependencies:
   flutter_screenutil: ^5.3.1
   flutter_svg: ^1.0.3
   google_fonts: ^2.3.1
-  google_sign_in: ^5.0.7
+  google_sign_in: ^5.3.3
   modal_bottom_sheet: null
   provider: ^6.0.2
   simple_connection_checker: ^0.2.1

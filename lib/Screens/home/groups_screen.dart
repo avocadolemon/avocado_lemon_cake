@@ -125,12 +125,13 @@ class _GroupScreenState extends State<GroupScreen> {
           child: Row(
             children: [
               IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    Icons.search,
-                    size: 18,
-                    color: AppColors.kwhite,
-                  )),
+                onPressed: () {},
+                icon: Icon(
+                  Icons.search,
+                  size: 18,
+                  color: AppColors.kwhite,
+                ),
+              ),
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
@@ -177,7 +178,7 @@ class _GroupScreenState extends State<GroupScreen> {
           itemCount: groupList.length,
           itemBuilder: (_, index) {
             return InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.pushNamed(context, '/aboutGroup');
               },
               child: MyGroupSlide(
@@ -203,7 +204,7 @@ class _GroupScreenState extends State<GroupScreen> {
           itemCount: groupList.length,
           itemBuilder: (_, index) {
             return InkWell(
-              onTap: (){
+              onTap: () {
                 Navigator.pushNamed(context, '/groupConversation');
               },
               child: MyGroupSlide(
@@ -217,8 +218,6 @@ class _GroupScreenState extends State<GroupScreen> {
     );
   }
 }
-  
-
 
 class MenuItem extends StatelessWidget {
   const MenuItem({
