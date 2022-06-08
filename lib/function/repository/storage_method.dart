@@ -12,7 +12,7 @@ class StorageMethod {
       required Uint8List file,
       required bool isPost}) async {
     Reference ref =
-        _storage.ref().child(childName).child(_auth.currentUser!.uid);
+        _storage.ref(). child(childName).child(_auth.currentUser!.uid);
     UploadTask uploadTask = ref.putData(file);
 
     TaskSnapshot snap = await uploadTask;

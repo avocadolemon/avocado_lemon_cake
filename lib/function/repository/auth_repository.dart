@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:simple_connection_checker/simple_connection_checker.dart';
@@ -10,6 +12,7 @@ import 'package:simple_connection_checker/simple_connection_checker.dart';
 class AuthRepository with ChangeNotifier {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseStorage _storage = FirebaseStorage.instance;
 
   //Create an account with email and password
   Future<void> createWithEmailAndPwd(
@@ -19,6 +22,7 @@ class AuthRepository with ChangeNotifier {
     String name,
     String age,
     String sex,
+    // File? profileImage,
   ) async {
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     try {
@@ -41,9 +45,14 @@ class AuthRepository with ChangeNotifier {
       } else {
         showSnackBar(context, "Oops! No network connection");
       }
-    } on FirebaseAuthException catch (e) {
-      log(e.toString());
-      showSnackBar(context, "${e.message} 😞");
+    } on PlatformException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        showSnackBar(context, "email already in use 😞");
+      } else if (e.code == 'invalid-email') {
+        showSnackBar(context, 'invalid email 😞');
+      } else if (e.code == 'weak-password') {
+        showSnackBar(context, 'weak password');
+      }
     }
     notifyListeners();
   }
@@ -93,22 +102,29 @@ class AuthRepository with ChangeNotifier {
       // Create a niw credential
       final credential = GoogleAuthProvider.credential(
           accessToken: googleAuth?.accessToken, idToken: googleAuth?.idToken);
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-      final User? user = userCredential.user;
 
-      await _db.collection("UserData").doc(user!.uid).set({
-        "userId": userCredential.user!.uid,
-        "name": user.displayName,
-        "age": "age",
-        "sex": "sex",
-        "email": user.email,
-        "registrationTime": DateTime.now(),
-      }).then((value) {
-        Navigator.pushReplacementNamed(context, '/homeWrapper');
-        showSnackBar(context, "Yay! Signed up Successfully 🤩");
-        return value;
-      });
+      await _auth.signInWithCredential(credential);
+      if (_auth.currentUser != null) {
+        for (final providerProfile in _auth.currentUser!.providerData) {
+          final provider = providerProfile.providerId;
+          final uid = providerProfile.uid;
+          final name = providerProfile.displayName;
+          final emailAddress = providerProfile.email;
+
+          await _db.collection("UserData").doc(provider).set({
+            "userId": uid,
+            "name": name,
+            "age": '',
+            "sex": '',
+            "email": emailAddress,
+            "registrationTime": DateTime.now(),
+          }).then((value) async {
+            Navigator.pushReplacementNamed(context, '/homeWrapper');
+            showSnackBar(context, "Yay! Signed up Successfully 🤩");
+            return value;
+          });
+        }
+      }
     }
     notifyListeners();
   }
@@ -147,6 +163,8 @@ class AuthRepository with ChangeNotifier {
 
   //Sign out method
   Future<void> signOut(BuildContext context) async {
+    FacebookAuth.instance.logOut();
+    GoogleSignIn().signOut();
     FirebaseAuth.instance.signOut().then(
       (value) {
         Navigator.pushReplacementNamed(context, '/login');
