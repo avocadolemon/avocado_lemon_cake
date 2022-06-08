@@ -174,6 +174,24 @@ class AuthRepository with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> resetPassword(BuildContext context, String email) async {
+    bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
+    try {
+      if (isConnected == true) {
+        await _auth.sendPasswordResetEmail(email: email).then((value) async {
+          Navigator.pushReplacementNamed(context, '/check-mail');
+          return value;
+        });
+      } else {
+        showSnackBar(context, "Oops! No network connection");
+      }
+    } on FirebaseAuthException catch (e) {
+      log(e.toString());
+      showSnackBar(context, "${e.message} 😞");
+    }
+    notifyListeners();
+  }
+
   void showSnackBar(BuildContext context, String text) {
     final snackBar = SnackBar(content: Text(text));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);

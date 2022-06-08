@@ -18,7 +18,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController? _email, _pass;
-  bool hideText = true, enabtn = true, _loadBtn = true;
+  bool hideText = true, enabtn = true, _loadBtn = false;
   final AuthRepository _authRepository = AuthRepository();
 
   _signInUser() async {

@@ -1,6 +1,6 @@
+import 'package:avocado_lemon_cake/function/repository/auth_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../widgets/button_widget.dart';
 import '../widgets/textformfield_widget.dart';
 
@@ -14,7 +14,19 @@ class ForgetPassword extends StatefulWidget {
 class _ForgetPasswordState extends State<ForgetPassword> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
+  final AuthRepository _authRepository = AuthRepository();
   bool enabtn = true, _loadBtn = false;
+
+  _forgotPass() async {
+    setState(() {
+      _loadBtn = true;
+    });
+    if (_formKey.currentState!.validate()) {
+      await _authRepository.resetPassword(context, _email.text.trim()).then(
+            (value) => setState(() => _loadBtn = false),
+          );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +71,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 btnName: 'SEND',
                 enabtn: enabtn,
                 startLoad: _loadBtn,
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    Navigator.of(context).pushNamed('/check-mail');
-                  }
-                },
+                onPressed: _forgotPass,
               ),
             ],
           ),

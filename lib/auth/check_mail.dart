@@ -1,7 +1,10 @@
+import 'dart:io';
+import 'package:android_intent_plus/android_intent.dart';
 import 'package:avocado_lemon_cake/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CheckMail extends StatefulWidget {
   const CheckMail({Key? key}) : super(key: key);
@@ -11,6 +14,17 @@ class CheckMail extends StatefulWidget {
 }
 
 class _CheckMailState extends State<CheckMail> {
+  bool visible = false;
+
+  @override
+  void initState() {
+    Future.delayed(
+      const Duration(seconds: 8),
+      () => setState(() => visible = true),
+    );
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,15 +59,34 @@ class _CheckMailState extends State<CheckMail> {
                   btnName: 'Open Email App',
                   enabtn: true,
                   startLoad: false,
-                  onPressed: () =>
-                      Navigator.of(context).pushNamed('/create-pass'),
+                  onPressed: () {
+                    if (Platform.isAndroid) {
+                      AndroidIntent intent = const AndroidIntent(
+                        action: 'android.intent.action.MAIN',
+                        category: 'android.intent.category.APP_EMAIL',
+                      );
+                      intent.launch().catchError((e) {
+                        debugPrint(e);
+                      });
+                    } else if (Platform.isIOS) {
+                      launchUrl(Uri.parse("message://")).catchError((e) {
+                        debugPrint(e);
+                      });
+                    }
+                    Navigator.of(context).pushNamed('/create-pass');
+                  },
                 ),
-                SizedBox(height: 47.h),
-                Text(
-                  'Skip I will check later',
-                  style: TextStyle(
-                    fontSize: 13.sp,
-                    fontWeight: FontWeight.w300,
+                Visibility(
+                  visible: visible,
+                  child: TextButton(
+                    onPressed: () => Navigator.pushNamed(context, '/login'),
+                    child: Text(
+                      'Login now.',
+                      style: TextStyle(
+                        fontSize: 15.sp,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
                   ),
                 ),
                 SizedBox(height: 154.h),
